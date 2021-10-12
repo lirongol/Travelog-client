@@ -63,3 +63,13 @@
    background-color: var(--white-3);
    cursor: pointer;
 }
+
+.mid-nav {
+   width: 30%;
+}
+
+@media (min-width: 901px) {
+   .mobile-search-icon {
+      display: none;
+   }
+}
