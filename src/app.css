@@ -1,0 +1,11 @@
+.app {
+   background-color: var(--white-2);
+   min-height: 100vh;
+   font-family: var(--primary-font);
+}
+
+.container {
+   padding: 75px 0;
+   width: 98%;
+   margin: 0 auto;
+}

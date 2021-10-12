@@ -1,0 +1,18 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+:root {
+   --white-1: #ffffff;
+   --white-2: #F0F2F5;
+   --white-3: rgb(225, 225, 225);
+   --black-1: #000000;
+   --muted-black: rgb(0,0,0,0.1);
+   --gray-1: #5a5a5a;
+   --orange-1: #ff614e;
+   --primary-font: 'Rubik', sans-serif;
+}
+
+* {
+   margin: 0;
+   -webkit-tap-highlight-color: transparent;
+}
