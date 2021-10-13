@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import './navbar.css';
 import logo from '../../images/travelog-logo.png';
 import avatar from '../../images/profile-avatar.jpg'
-import { CgBell, CgSearch } from 'react-icons/cg';
+import { CgBell, CgSearch, CgMenu } from 'react-icons/cg';
 import { AiOutlinePlus } from 'react-icons/ai';
+import { TiMessages } from 'react-icons/ti';
 import Search from '../Search/Search';
 import MobileSearch from '../Search/MobileSearch';
+import { Link } from 'react-router-dom';
+import MobileSidebar from '../Sidebar/MobileSidebar';
 
 function Navbar() {
    const [mobileSearch, setMobileSearch] = useState(() => false);
    const [inputFocus, setInputFocus] = useState(() => false);
+   const [mobileSidebar, setMobileSidebar] = useState(() => false);
 
    return (
       <div className="navbar">
@@ -19,8 +23,17 @@ function Navbar() {
          <div className="nav-container">
 
             <div className="left-nav">
+               <div className="ham-menu" onClick={() => setMobileSidebar(true)}>
+                  <CgMenu />
+               </div>
+               {mobileSidebar && <div className="backdrop mobile-sidebar-background" onClick={() => setMobileSidebar(false)}>
+                  <MobileSidebar setMobileSidebar={setMobileSidebar} />
+               </div>}
+               
                <div className="nav-logo">
-                  <img src={logo} alt="logo" />
+                  <Link to="/">
+                     <img src={logo} alt="logo" />
+                  </Link>
                </div>
             </div>
 
@@ -34,6 +47,9 @@ function Navbar() {
                </div>
                <div className="nav-item">
                   <CgBell />
+               </div>
+               <div className="nav-item">
+                  <TiMessages />
                </div>
                <div className="nav-item">
                   <AiOutlinePlus />

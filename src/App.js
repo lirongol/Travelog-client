@@ -6,13 +6,19 @@ import './app.css';
 
 // components
 import Navbar from './components/Navbar/Navbar';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
    return (
       <div className="app">
          <Navbar />
          <div className="container">
-            <h1>Travelog App</h1>
+            <div className="sidebar">
+               <Sidebar />
+            </div>
+            <div className="main-content">
+               <h1>Travelog App</h1>
+            </div>
          </div>
       </div>
    )

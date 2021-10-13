@@ -1,0 +1,26 @@
+.mobile-sidebar {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 250px;
+   height: 100vh;
+   background-color: var(--white-1);
+}
+
+.mobile-sidebar-header {
+   height: 60px;
+   box-shadow: 0 1px 10px -6px gray;
+}
+
+.sidebar-close-icon {
+   font-size: 2.3rem;
+   margin: 12px 0 0 12px;
+}
+
+.sidebar-close-icon:hover {
+   cursor: pointer;
+}
+
+.sidebar-links {
+   padding: 5px;
+}

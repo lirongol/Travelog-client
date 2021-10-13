@@ -17,6 +17,38 @@
    align-items: center;
    width: 98%;
    margin: 0 auto;
+   transition: 500ms;
+}
+
+@media (min-width: 1400px) {
+   .nav-container {
+      width: 70%;
+      transition: 500ms;
+   }
+}
+
+.left-nav {
+   display: flex;
+}
+
+.ham-menu {
+   display: flex;
+   align-items: center;
+   font-size: 2.3rem;
+   padding: 0 6px;
+}
+
+@media (min-width: 901px) {
+   .ham-menu {
+      display: none;
+   }
+   .mobile-sidebar-background {
+      display: none;
+   }
+}
+
+.ham-menu:hover {
+   cursor: pointer;
 }
 
 .nav-logo img {
