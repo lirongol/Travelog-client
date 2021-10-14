@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './navbar.css';
+import './Navbar.css';
 import logo from '../../images/travelog-logo.png';
 import avatar from '../../images/profile-avatar.jpg'
 import { CgBell, CgSearch, CgMenu } from 'react-icons/cg';
@@ -9,11 +9,13 @@ import Search from '../Search/Search';
 import MobileSearch from '../Search/MobileSearch';
 import { Link } from 'react-router-dom';
 import MobileSidebar from '../Sidebar/MobileSidebar';
+import PostEditor from '../Posts/PostEditor/PostEditor';
 
 function Navbar() {
    const [mobileSearch, setMobileSearch] = useState(() => false);
    const [inputFocus, setInputFocus] = useState(() => false);
    const [mobileSidebar, setMobileSidebar] = useState(() => false);
+   const [postEditor, setPostEditor] = useState(() => false);
 
    return (
       <div className="navbar">
@@ -42,21 +44,28 @@ function Navbar() {
             </div>
 
             <div className="right-nav">
+
                <div className="profile-avatar">
                   <img src={avatar} alt="profile-avatar" />
                </div>
+
                <div className="nav-item">
                   <CgBell />
                </div>
+
                <div className="nav-item">
                   <TiMessages />
                </div>
-               <div className="nav-item">
+
+               <div className="nav-item" onClick={() => setPostEditor(true)}>
                   <AiOutlinePlus />
                </div>
+               {postEditor && <PostEditor setPostEditor={setPostEditor} />}
+
                <div className="nav-item mobile-search-icon" onClick={() => setMobileSearch(() => true)}>
                   <CgSearch />
                </div>
+
             </div>
 
          </div>

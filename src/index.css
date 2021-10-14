@@ -5,9 +5,10 @@
    --white-1: #ffffff;
    --white-2: #F0F2F5;
    --white-3: rgb(225, 225, 225);
+   --white-4: rgb(200, 200, 200);
    --black-1: #000000;
-   --backdrop: rgb(0,0,0,0.4);
-   --gray-1: #5a5a5a;
+   --backdrop: rgba(0, 0, 0, 0.3);
+   --gray-1: #888888;
    --orange-1: #ff614e;
    --primary-font: 'Rubik', sans-serif;
 }
@@ -24,4 +25,9 @@
    bottom: 0;
    left: 0;
    background-color: var(--backdrop);
+}
+
+.selected-2 {
+   background-color: var(--white-4);
+   color: var(--orange-1);
 }

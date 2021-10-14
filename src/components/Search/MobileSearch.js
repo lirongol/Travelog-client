@@ -1,5 +1,5 @@
 import React from 'react';
-import './search.css';
+import './Search.css';
 import { CgSearch } from 'react-icons/cg';
 
 function MobileSearch({ mobileSearch, setMobileSearch }) {

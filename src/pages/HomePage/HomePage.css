@@ -1,0 +1,26 @@
+.feed-options {
+   display: flex;
+   padding: 5px;
+   background-color: var(--white-3);
+   border-radius: 5px;
+}
+
+.feed-options h3 {
+   font-weight: 400;
+   font-size: 1rem;
+   margin-left: 5px;
+}
+
+.feed-options div {
+   min-width: 175px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 5px;
+   border-radius: 5px;
+}
+
+.feed-options div:hover {
+   cursor: pointer;
+   background-color: var(--white-4);
+}

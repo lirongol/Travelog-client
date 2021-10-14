@@ -1,5 +1,5 @@
 import React from 'react';
-import './sidebar.css';
+import './Sidebar.css';
 import MobileLinks from './Links/MobileLinks';
 import { CgClose } from 'react-icons/cg';
 

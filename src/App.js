@@ -1,8 +1,9 @@
 import React from 'react';
 import './app.css';
+import { Switch, Route } from 'react-router-dom';
 
 // pages
-
+import HomePage from './pages/HomePage/HomePage';
 
 // components
 import Navbar from './components/Navbar/Navbar';
@@ -17,7 +18,11 @@ function App() {
                <Sidebar />
             </div>
             <div className="main-content">
-               <h1>Travelog App</h1>
+               <Switch>
+                  <Route exact path="/">
+                     <HomePage />
+                  </Route>
+               </Switch>
             </div>
          </div>
       </div>

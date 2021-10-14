@@ -1,5 +1,5 @@
 import React from 'react';
-import './links.css';
+import './Links.css';
 import { MdRssFeed } from 'react-icons/md';
 import { RiHashtag } from 'react-icons/ri';
 import { AiOutlineVideoCamera } from 'react-icons/ai';
