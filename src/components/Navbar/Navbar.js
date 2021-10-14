@@ -10,8 +10,10 @@ import MobileSearch from '../Search/MobileSearch';
 import { Link } from 'react-router-dom';
 import MobileSidebar from '../Sidebar/MobileSidebar';
 import PostEditor from '../Posts/PostEditor/PostEditor';
+import ProfileDropdown from '../Dropdowns/ProfileDropdown';
+import NotificationDropdown from '../Dropdowns/NotificationDropdown';
 
-function Navbar() {
+function Navbar({ setProfileDropdown, profileDropdown, notificationDropdown, setNotificationDropdown }) {
    const [mobileSearch, setMobileSearch] = useState(() => false);
    const [inputFocus, setInputFocus] = useState(() => false);
    const [mobileSidebar, setMobileSidebar] = useState(() => false);
@@ -45,13 +47,23 @@ function Navbar() {
 
             <div className="right-nav">
 
-               <div className="profile-avatar">
+               <div className="profile-avatar" onClick={e => {
+                  e.stopPropagation();
+                  setProfileDropdown(pre => !pre);
+                  setNotificationDropdown(false);
+               }}>
                   <img src={avatar} alt="profile-avatar" />
                </div>
+               {profileDropdown && <ProfileDropdown setProfileDropdown={setProfileDropdown} />}
 
-               <div className="nav-item">
+               <div className="nav-item" onClick={e => {
+                  e.stopPropagation();
+                  setNotificationDropdown(pre => !pre)
+                  setProfileDropdown(false);
+               }}>
                   <CgBell />
                </div>
+               {notificationDropdown && <NotificationDropdown />}
 
                <div className="nav-item">
                   <TiMessages />

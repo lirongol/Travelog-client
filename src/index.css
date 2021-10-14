@@ -13,6 +13,19 @@
    --primary-font: 'Rubik', sans-serif;
 }
 
+::-webkit-scrollbar {
+   width: 10px;
+ }
+
+ ::-webkit-scrollbar-thumb {
+   background: var(--white-3); 
+   border-radius: 10px;
+ }
+ 
+ ::-webkit-scrollbar-thumb:hover {
+   background: #c2c2c2; 
+ }
+
 * {
    margin: 0;
    -webkit-tap-highlight-color: transparent;
@@ -25,9 +38,28 @@
    bottom: 0;
    left: 0;
    background-color: var(--backdrop);
+   z-index: 2000;
 }
 
 .selected-2 {
    background-color: var(--white-4);
    color: var(--orange-1);
+}
+
+.btn {
+   background-color: var(--orange-1);
+   color: var(--white-1);
+   border: none;
+   border-radius: 5px;
+   padding: 10px;
+   font-size: 1.2rem;
+   width: 100%;
+}
+
+.btn:hover {
+   cursor: pointer;
+}
+
+.btn:active {
+   transform: scale(0.99);
 }

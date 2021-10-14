@@ -1,27 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './app.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 // pages
 import HomePage from './pages/HomePage/HomePage';
+import AuthPage from './pages/AuthPage/AuthPage';
 
 // components
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
+   const [profile, setProfile] = useState(JSON.parse(localStorage.getItem('profile')));
+   const [profileDropdown, setProfileDropdown] = useState(() => false);
+   const [notificationDropdown, setNotificationDropdown] = useState(() => false);
+
+   const location = useLocation();
+
+   useEffect(() => {
+      setProfile(JSON.parse(localStorage.getItem('profile')));
+   }, [location]);
+
+   const handleAppClick = () => {
+      setProfileDropdown(false);
+      setNotificationDropdown(false);
+   }
+
    return (
-      <div className="app">
-         <Navbar />
-         <div className="container">
-            <div className="sidebar">
+      <div className="app" onClick={handleAppClick}>
+         {profile && <Navbar
+            profileDropdown={profileDropdown}
+            setProfileDropdown={setProfileDropdown}
+            notificationDropdown={notificationDropdown}
+            setNotificationDropdown={setNotificationDropdown}
+         />}
+         <div className={!profile ? null : 'container'}>
+            {profile && <div className="sidebar">
                <Sidebar />
-            </div>
-            <div className="main-content">
+            </div>}
+            <div className={!profile ? null : 'main-content'}>
                <Switch>
+
+                  {!profile && <Route path="/">
+                     <AuthPage />
+                  </Route>}
+
                   <Route exact path="/">
                      <HomePage />
                   </Route>
+
                </Switch>
             </div>
          </div>

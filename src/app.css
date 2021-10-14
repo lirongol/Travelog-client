@@ -1,6 +1,6 @@
 .app {
    background-color: var(--white-2);
-   min-height: 500vh;
+   min-height: 100vh;
    font-family: var(--primary-font);
 }
 
@@ -8,7 +8,6 @@
    padding: 75px 0;
    width: 98%;
    margin: 0 auto;
-   transition: 500ms;
 }
 
 @media (min-width: 1400px) {
@@ -36,5 +35,6 @@
    }
    .main-content {
       margin-left: 0;
+      transition: 500ms;
    }
 }

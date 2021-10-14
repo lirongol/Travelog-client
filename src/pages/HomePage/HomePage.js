@@ -5,6 +5,8 @@ import { MdRssFeed, MdTravelExplore } from 'react-icons/md';
 function HomePage() {
    const [explore, setExplore] = useState(() => false)
 
+   document.title = 'Travelog';
+
    return (
       <div className="home-page">
          <div className="feed-options">
