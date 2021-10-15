@@ -7,11 +7,20 @@
 .post-editor {
    position: absolute;
    max-width: 500px;
+   max-height: 600px;
+   overflow-y: scroll;
    width: 95%;
    height: auto;
    background-color: var(--white-1);
    border-radius: 10px;
    box-shadow: 0 0 6px -3px black;
+}
+
+@media (max-width: 500px) {
+   .post-editor {
+      max-height: 370px;
+      overflow-y: scroll;
+   }
 }
 
 .post-editor-header {
@@ -63,4 +72,101 @@
 .btn-container{
    width: 95%;
    margin: 10px auto;
+}
+
+.add-to-post-section {
+   width: 95%;
+   margin: 10px auto;
+   display: flex;
+   flex-direction: row;
+}
+
+.add-to-post {
+   margin: 5px 10px;
+   display: flex;
+   border-radius: 15px;
+   background-color: var(--white-2);
+}
+
+.add-to-post:hover {
+   cursor: pointer;
+   background-color: var(--white-3);
+}
+
+.add-to-post-icon {
+   font-size: 30px;
+   padding: 10px;
+}
+
+.img-icon {
+   color: rgb(54, 106, 202);
+}
+
+.video-icon {
+   color: rgb(120, 179, 45);
+}
+
+.location-icon {
+   color: var(--orange-1);
+}
+
+input[type="file"] {
+   display: none;
+}
+
+.previews {
+   width: 95%;
+   margin: 0 auto;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.previews img {
+   width: 100px;
+   height: 65px;
+   border-radius: 5px;
+}
+
+@media (min-width: 500px) {
+   .previews img {
+      width: 135px;
+      height: 80px;
+   }
+}
+
+.delete-media {
+   position: absolute;
+   top: 0;
+   right: 0;
+   display: flex;
+   background-color: var(--white-2);
+   padding: 7px;
+   border-radius: 50%;
+   box-shadow: 0 0 6px -3px black;
+   z-index: 50;
+}
+
+.delete-media:hover {
+   cursor: pointer;
+   background-color: var(--white-3);
+}
+
+.preview-media {
+   position: relative;
+   padding: 10px;
+}
+
+.video-preview {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   margin: 10px auto;
+   padding: 10px;
+}
+
+.video-preview video {
+   border-radius: 5px;
+   width: 300px;
+   max-height: 250px;
 }
