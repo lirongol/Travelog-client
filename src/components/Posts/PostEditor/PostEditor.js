@@ -4,7 +4,10 @@ import { CgClose } from 'react-icons/cg';
 import { RiImageAddFill } from 'react-icons/ri';
 import { AiOutlineVideoCameraAdd, AiOutlineDelete } from 'react-icons/ai';
 import { MdOutlineAddLocationAlt } from 'react-icons/md';
+import { BiArrowBack } from 'react-icons/bi';
+import { ImLocation } from 'react-icons/im';
 import FileBase64 from 'react-file-base64';
+import LocationSearch from '../../LocationSearch/LocationSearch';
 
 function PostEditor({ setPostEditor }) {
    const [postData, setPostData] = useState({
@@ -13,19 +16,14 @@ function PostEditor({ setPostEditor }) {
       selectedFiles: '',
       selectedVideo: ''
    });
-   const [mouseDown, setMouseDown] = useState(false);
+   const [mouseDown, setMouseDown] = useState(() => false);
+   const [locationForm, setLocationForm] = useState(() => false);
+
    const postText = useRef();
 
    useEffect(() => {
-      postText.current.focus();
+      postText?.current?.focus();
    }, [postText]);
-
-   useEffect(() => {
-      const files = postData.selectedFiles;
-      if (typeof files === 'object' && files.length === 0) {
-         setPostData({ ...postData, selectedFiles: '' });
-      }
-   }, [postData]);
 
    const handleSubmit = e => {
       e.preventDefault();
@@ -45,17 +43,33 @@ function PostEditor({ setPostEditor }) {
       <div className="backdrop post-editor-container" onMouseDown={() => setMouseDown(true)} onMouseUp={() => mouseDown && setPostEditor(false)}>
          <div className="post-editor" onMouseDown={e => { e.stopPropagation(); setMouseDown(false)}} onMouseUp={e => e.stopPropagation()}>
             <div className="post-editor-header">
-               <h3>Create Post</h3>
-               <div className="post-editor-close-icon" onClick={() => setPostEditor(false)}>
+               <h3>{locationForm ? 'Search Location' : 'Create Post'}</h3>
+               {!locationForm && <div className="post-editor-close-icon" onClick={() => setPostEditor(false)}>
                   <CgClose />
-               </div>
+               </div>}
+               {locationForm && <div className="location-search-back-icon" onClick={() => setLocationForm(false)}>
+                  <BiArrowBack />
+               </div>}
             </div>
-            <form className="post-editor-form" onSubmit={handleSubmit}>
+
+            {locationForm && <div className="location-search-form">
+               <LocationSearch postData={postData} setPostData={setPostData} setLocationForm={setLocationForm} />
+            </div>}
+
+            <form className="post-editor-form" onSubmit={handleSubmit} style={locationForm ? { display: 'none' } : null}>
+               
+               {postData.location && <div className="location-preview">
+                  <div>
+                     <ImLocation style={{display: 'flex', marginRight: '3px'}} />
+                  </div>
+                  <span>{postData.location}</span>
+               </div>}
 
                <div className="post-text-container">
                   <div
                      className="post-text-input"
                      contentEditable
+                     innertext={postData.postText}
                      onInput={e => setPostData({ ...postData, postText: e.target.innerText })}
                      ref={postText}
                   >
@@ -64,12 +78,12 @@ function PostEditor({ setPostEditor }) {
                </div>
 
                {postData.selectedFiles && <div className="previews">
-                     {postData.selectedFiles.map(file => {
+                     {postData.selectedFiles.map((file, index) => {
                         return (
                            <div className="preview-media" key={Math.random()}>
                               <div className="delete-media" onClick={() => {
                                  setPostData({...postData,
-                                    selectedFiles: postData.selectedFiles.filter(f => f !== file)
+                                    selectedFiles: postData.selectedFiles.filter((f, i) => i !== index)
                                  })
                               }}>
                                  <AiOutlineDelete style={{color: 'red'}} />
@@ -98,7 +112,13 @@ function PostEditor({ setPostEditor }) {
                         type="file"
                         accept="image"
                         multiple
-                        onDone={files => setPostData({ ...postData, selectedFiles: files.map(f => f.base64) })}
+                        onDone={files => setPostData({
+                           ...postData,
+                           selectedFiles: [
+                              ...postData.selectedFiles,
+                              ...files.map(f => f.base64)
+                           ]
+                        })}
                      />
                   </div>
                   <div className="add-to-post" onClick={handleAddVideo}>
@@ -109,7 +129,7 @@ function PostEditor({ setPostEditor }) {
                         onDone={file => setPostData({ ...postData, selectedVideo: file.base64 })}
                      />
                   </div>
-                  <div className="add-to-post">
+                  <div className="add-to-post" onClick={() => setLocationForm(true)}>
                      <MdOutlineAddLocationAlt className="add-to-post-icon location-icon" />
                   </div>
                </div>

@@ -47,21 +47,27 @@ function Navbar({ setProfileDropdown, profileDropdown, notificationDropdown, set
 
             <div className="right-nav">
 
-               <div className="profile-avatar" onClick={e => {
-                  e.stopPropagation();
-                  setProfileDropdown(pre => !pre);
-                  setNotificationDropdown(false);
-               }}>
-                  <img src={avatar} alt="profile-avatar" />
+               <div
+                  className="profile-avatar"
+                  onClick={e => {
+                     e.stopPropagation();
+                     setProfileDropdown(pre => !pre);
+                     setNotificationDropdown(false);
+                  }}
+               >
+                  <img src={avatar} style={profileDropdown ? {border: '2px solid var(--orange-1)'} : null} alt="profile-avatar" />
                </div>
                {profileDropdown && <ProfileDropdown setProfileDropdown={setProfileDropdown} />}
 
-               <div className="nav-item" onClick={e => {
-                  e.stopPropagation();
-                  setNotificationDropdown(pre => !pre)
-                  setProfileDropdown(false);
-               }}>
-                  <CgBell />
+               <div
+                  className="nav-item"
+                  onClick={e => {
+                     e.stopPropagation();
+                     setNotificationDropdown(pre => !pre)
+                     setProfileDropdown(false);
+                  }}
+               >
+                  <CgBell style={notificationDropdown ? {color: 'var(--orange-1)'} : null} />
                </div>
                {notificationDropdown && <NotificationDropdown />}
 

@@ -8,12 +8,13 @@
    position: absolute;
    max-width: 500px;
    max-height: 600px;
+   min-height: 350px;
    overflow-y: scroll;
    width: 95%;
    height: auto;
    background-color: var(--white-1);
-   border-radius: 10px;
-   box-shadow: 0 0 6px -3px black;
+   border-radius: 5px;
+   box-shadow: 0 0 6px -4px black;
 }
 
 @media (max-width: 500px) {
@@ -31,24 +32,46 @@
    border-bottom: 1px solid var(--white-3);
 }
 
-.post-editor-close-icon {
+.post-editor-close-icon,
+.location-search-back-icon {
    font-size: 20px;
    display: flex;
    position: absolute;
-   right: 15px;
+   right: 5px;
    background-color: var(--white-2);
    padding: 10px;
    border-radius: 50%;
 }
 
+.location-search-back-icon {
+   left: 10px;
+   right: auto;
+}
+
+.location-search-back-icon:hover {
+   cursor: pointer;
+   background-color: var(--white-3);
+}
+
 .post-editor-close-icon:hover {
    cursor: pointer;
+   background-color: var(--white-3);
 }
 
 .post-text-container {
    position: relative;
    width: 95%;
    margin: 10px auto;
+}
+
+.post-editor-form {
+   transition: 500ms;
+}
+
+.location-search-form {
+   width: 95%;
+   margin: 10px auto;
+   transition: 500ms;
 }
 
 .post-text-input {
@@ -126,6 +149,16 @@ input[type="file"] {
    width: 100px;
    height: 65px;
    border-radius: 5px;
+}
+
+.location-preview {
+   color: rgb(95, 95, 95);
+   display: flex;
+   align-items: center;
+   width: 95%;
+   margin: 0 auto;
+   margin-top: 5px;
+   word-break: break-all;
 }
 
 @media (min-width: 500px) {

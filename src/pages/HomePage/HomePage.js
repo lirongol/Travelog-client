@@ -3,7 +3,7 @@ import './HomePage.css';
 import { MdRssFeed, MdTravelExplore } from 'react-icons/md';
 
 function HomePage() {
-   const [explore, setExplore] = useState(() => false)
+   const [explore, setExplore] = useState(() => false);
 
    document.title = 'Travelog';
 
