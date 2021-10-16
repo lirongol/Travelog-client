@@ -14,6 +14,7 @@ function App() {
    const [profile, setProfile] = useState(JSON.parse(localStorage.getItem('profile')));
    const [profileDropdown, setProfileDropdown] = useState(() => false);
    const [notificationDropdown, setNotificationDropdown] = useState(() => false);
+   const [postEditor, setPostEditor] = useState(() => false);
 
    const location = useLocation();
 
@@ -33,6 +34,8 @@ function App() {
             setProfileDropdown={setProfileDropdown}
             notificationDropdown={notificationDropdown}
             setNotificationDropdown={setNotificationDropdown}
+            setPostEditor={setPostEditor}
+            postEditor={postEditor}
          />}
          <div className={!profile ? null : 'container'}>
             {profile && <div className="sidebar">
@@ -46,7 +49,7 @@ function App() {
                   </Route>}
 
                   <Route exact path="/">
-                     <HomePage />
+                     <HomePage setPostEditor={setPostEditor} />
                   </Route>
 
                </Switch>

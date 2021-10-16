@@ -60,6 +60,12 @@
    cursor: pointer;
 }
 
+@media (max-width: 359px) {
+   .nav-logo {
+      display: none;
+   }
+}
+
 .profile-avatar {
    border-radius: 50%;
    overflow: hidden;

@@ -17,10 +17,14 @@ export const register = registerData => API.post('/user/register', registerData)
 export const getUserInfo = username => API.get(`/user/${username}`);
 export const followUser = username => API.patch(`/user/${username}`);
 
-// posts
-export const getAllPosts = () => API.get('/post');
+// post
+// get
+export const getFeedPosts = () => API.get('/post/feedposts');
+// post
 export const createPost = newPost => API.post('/post', newPost);
+// patch
 export const updatePost = (id, updatedPost) => API.patch(`/post/${id}`, updatedPost);
+export const postUpVote = id => API.patch(`/post/${id}/postupVote`);
+export const postDownVote = id => API.patch(`/post/${id}/postdownVote`);
+// delete
 export const deletePost = id => API.delete(`/post/${id}`);
-export const postUpVote = id => API.patch(`/post/${id}/postUpVote`);
-export const postDownVote = id => API.patch(`/post/${id}/postDownVote`);

@@ -10,7 +10,7 @@
    padding: 5px;
    background-color: var(--white-3);
    border-radius: 5px;
-   margin-bottom: 10px;
+   margin-bottom: 20px;
 }
 
 .feed-options h3 {
@@ -20,12 +20,18 @@
 }
 
 .feed-options div {
-   min-width: 175px;
+   min-width: 150px;
    display: flex;
    justify-content: center;
    align-items: center;
    padding: 5px;
    border-radius: 5px;
+}
+
+@media (max-width: 359px) {
+   .feed-options div {
+      min-width: 125px;
+   }
 }
 
 .feed-options div:hover {

@@ -1,24 +1,33 @@
 import React, { useState } from 'react';
 import './HomePage.css';
 import { MdRssFeed, MdTravelExplore } from 'react-icons/md';
+import FeedPosts from '../../components/Posts/FeedPosts';
+import ExplorePosts from '../../components/Posts/ExplorePosts';
 
-function HomePage() {
-   const [explore, setExplore] = useState(() => false);
+function HomePage({ setPostEditor }) {
+   const [explorePosts, setExplorePosts] = useState(() => false);
 
    document.title = 'Travelog';
 
    return (
       <div className="home-page">
          <div className="feed-options">
-            <div className={!explore ? 'selected-2' : ''} onClick={() => setExplore(false)}>
+            <div className={!explorePosts ? 'selected-2' : ''} onClick={() => setExplorePosts(false)}>
                <MdRssFeed style={{fontSize: '1.3rem'}} />
                <h3>Feed</h3>
             </div>
-            <div className={explore ? 'selected-2' : ''} onClick={() => setExplore(true)}>
+            <div className={explorePosts ? 'selected-2' : ''} onClick={() => setExplorePosts(true)}>
                <MdTravelExplore style={{fontSize: '1.3rem'}} />
                <h3>Explore</h3>
             </div>
          </div>
+
+         {explorePosts ?
+            <ExplorePosts />
+            :
+            <FeedPosts setPostEditor={setPostEditor} />
+         }
+
       </div>
    )
 }

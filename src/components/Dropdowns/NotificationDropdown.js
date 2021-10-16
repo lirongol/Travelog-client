@@ -6,7 +6,7 @@ import { MdPostAdd } from 'react-icons/md';
 
 function NotificationDropdown() {
    return (
-      <div className="dropdown" onClick={e => e.stopPropagation()}>
+      <div className="dropdown notification" onClick={e => e.stopPropagation()}>
 
          <div className="dropdown-link">
             <RiUserFollowLine className="dropdown-icon" />

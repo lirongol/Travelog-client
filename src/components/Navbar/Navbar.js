@@ -13,11 +13,17 @@ import PostEditor from '../Posts/PostEditor/PostEditor';
 import ProfileDropdown from '../Dropdowns/ProfileDropdown';
 import NotificationDropdown from '../Dropdowns/NotificationDropdown';
 
-function Navbar({ setProfileDropdown, profileDropdown, notificationDropdown, setNotificationDropdown }) {
+function Navbar({
+   setProfileDropdown,
+   profileDropdown,
+   notificationDropdown,
+   setNotificationDropdown,
+   setPostEditor,
+   postEditor
+}) {
    const [mobileSearch, setMobileSearch] = useState(() => false);
    const [inputFocus, setInputFocus] = useState(() => false);
    const [mobileSidebar, setMobileSidebar] = useState(() => false);
-   const [postEditor, setPostEditor] = useState(() => false);
 
    return (
       <div className="navbar">

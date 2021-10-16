@@ -9,6 +9,7 @@
    --black-1: #000000;
    --backdrop: rgba(0, 0, 0, 0.3);
    --gray-1: #888888;
+   --gray-2: #5a5a5a;
    --orange-1: #ff614e;
    --primary-font: 'Rubik', sans-serif;
 }
@@ -62,4 +63,9 @@
 
 .btn:active {
    transform: scale(0.99);
+}
+
+.link {
+   text-decoration: none;
+   color: inherit;
 }

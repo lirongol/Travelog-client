@@ -8,6 +8,8 @@ import { BiArrowBack } from 'react-icons/bi';
 import { ImLocation } from 'react-icons/im';
 import FileBase64 from 'react-file-base64';
 import LocationSearch from '../../LocationSearch/LocationSearch';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../../../redux/actions/postActions';
 
 function PostEditor({ setPostEditor }) {
    const [postData, setPostData] = useState({
@@ -20,6 +22,7 @@ function PostEditor({ setPostEditor }) {
    const [locationForm, setLocationForm] = useState(() => false);
 
    const postText = useRef();
+   const dispatch = useDispatch();
 
    useEffect(() => {
       postText?.current?.focus();
@@ -27,6 +30,8 @@ function PostEditor({ setPostEditor }) {
 
    const handleSubmit = e => {
       e.preventDefault();
+      dispatch(createPost(postData));
+      setPostEditor(false);
    }
 
    const handleAddImages = () => {
@@ -139,7 +144,6 @@ function PostEditor({ setPostEditor }) {
                      className="btn"
                      style={postData.postText || postData.selectedFiles || postData.selectedVideo ? null : {backgroundColor: '#ff604eab', cursor: 'not-allowed'}}
                      disabled={postData.postText || postData.selectedFiles || postData.selectedVideo ? false : true}
-                     onClick={() => console.log(postData)}
                   >
                      Post
                   </button>

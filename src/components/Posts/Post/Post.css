@@ -1,0 +1,155 @@
+.post {
+   background-color: var(--white-1);
+   width: 100%;
+   max-width: 650px;
+   border-radius: 5px;
+   box-shadow: 0 0 6px -4px black;
+   margin-bottom: 20px;
+   word-wrap: break-word;
+}
+
+.post-header {
+   width: 95%;
+   margin: 10px auto;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.post-header-left {
+   display: flex;
+}
+
+.post-creator-avatar {
+   border-radius: 50%;
+   overflow: hidden;
+}
+
+.post-creator-avatar img {
+   width: 45px;
+   height: 45px;
+   display: flex;
+}
+
+.username-time {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   margin-left: 6px;
+}
+
+.creator-username {
+   display: inline-flex;
+}
+
+.post-time-ago {
+   font-size: 0.85rem;
+   color: var(--gray-2);
+}
+
+.post-header-right {
+   position: relative;
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+}
+
+.post-options {
+   display: flex;
+   padding: 10px;
+   border-radius: 50%;
+   background-color: var(--white-2);
+   font-size: 20px;
+}
+
+.post-options:hover {
+   background-color: var(--white-3);
+   cursor: pointer;
+}
+
+.post-options-dropdown {
+   position: absolute;
+   top: 40px;
+   right: 0;
+   background-color: var(--white-1);
+   border-radius: 5px;
+   box-shadow: 0 0 6px -3px black;
+   min-width: 150px;
+   padding: 5px;
+   z-index: 900;
+}
+
+.post-location {
+   width: 95%;
+   margin: 10px auto;
+   display: flex;
+   align-items: center;
+   color: var(--gray-2);
+}
+
+.post-location span {
+   font-size: 0.9rem;
+   font-style: italic;
+   word-break: break-all;
+}
+
+.post-text {
+   width: 95%;
+   margin: 0 auto;
+   margin-bottom: 10px;
+   word-break:break-all;
+}
+
+.post-text pre {
+   font-size: 1rem;
+   font-family: var(--primary-font);
+   white-space: pre-wrap;
+   white-space: -moz-pre-wrap;
+   white-space: -pre-wrap;
+   white-space: -o-pre-wrap;
+   word-wrap: break-word; 
+
+}
+
+.post-media {
+   border-top: 1px solid rgb(220, 220, 220);
+   border-bottom: 1px solid rgb(220, 220, 220);
+   display: flex;
+   user-select: none;
+}
+
+.post-media img {
+   width: 100%;
+}
+
+.votes-container {
+   display: flex;
+   width: 100%;
+   height: 40px;
+   user-select: none;
+}
+
+.vote {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 50%;
+}
+
+.vote-icon {
+   display: flex;
+   margin-right: 2px;
+}
+
+.vote:hover {
+   cursor: pointer;
+   background-color: var(--white-3);
+}
+
+.vote * {
+   color: var(--gray-2);
+}
+
+.selected-vote * {
+   color: var(--orange-1) !important;
+}
