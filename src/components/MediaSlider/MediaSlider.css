@@ -6,10 +6,7 @@
 }
 
 .slider-container img {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   max-height: 500px;
+   max-height: 600px;
    max-width: 100%;
    width: auto;
    height: auto;

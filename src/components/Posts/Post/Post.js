@@ -6,10 +6,21 @@ import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { ImLocation, ImArrowUp, ImArrowDown } from 'react-icons/im';
 import moment from 'moment';
 import MediaSlider from '../../MediaSlider/MediaSlider';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPostId } from '../../../redux/actions/postActions';
 
 function Post({ post, setPostEditor }) {
    const [postDropdown, setPostDropdown] = useState(() => false);
-   const user = JSON.parse(localStorage.getItem('profile')).existingUser;
+   const user = useSelector(state => state?.auth?.existingUser);
+   const dispatch = useDispatch();
+   const isAuth = post.creatorId === user._id;
+
+   const handlePostEdit = () => {
+      if (isAuth) {
+         dispatch(setPostId(post._id));
+         setPostEditor(true);
+      }
+   }
 
    return (
       <div className="post">
@@ -44,7 +55,7 @@ function Post({ post, setPostEditor }) {
                   <HiDotsHorizontal/>
                </div>
                {postDropdown && <div className="post-options-dropdown">
-                  <div className="dropdown-link" style={{ padding: '7px' }}>
+                  <div className="dropdown-link" style={{ padding: '7px' }} onClick={handlePostEdit}>
                      <AiOutlineEdit className="dropdown-icon" />
                      <h3>Edit</h3>
                   </div>
@@ -69,7 +80,7 @@ function Post({ post, setPostEditor }) {
             <div className="post-media">
                {post.media.length === 1 &&
                   post.media.map(media => {
-                     return <img src={media.url} key={media.filename} alt="post media" />
+                     return <img src={media.url} key={media.filename} alt="post media" />;
                   })
                }
                
@@ -79,16 +90,28 @@ function Post({ post, setPostEditor }) {
             </div>
          }
 
+         {post?.video[0]?.url &&
+            <div className="post-media">
+               <video controls>
+                  <source src={post.video[0].url} type="video/mp4"/>
+               </video>
+            </div>
+         }
+
          <div className="votes-container">
             <div className="vote">
                <div className="vote-icon">
-                  <ImArrowUp className={post.upVotes.indexOf(user?._id) !== -1 && 'selected-vote'} />
+                  <ImArrowUp
+                     className={post.upVotes.indexOf(user?._id) !== -1 && 'selected-vote'}
+                  />
                </div>
                <span>{post.upVotes.length}</span>
             </div>
             <div className="vote">
                <div className="vote-icon">
-                  <ImArrowDown className={post.downVotes.indexOf(user?._id) !== -1 && 'selected-vote'} />
+                  <ImArrowDown
+                     className={post.downVotes.indexOf(user?._id) !== -1 && 'selected-vote'}
+                  />
                </div>
                <span>{post.downVotes.length}</span>
             </div>

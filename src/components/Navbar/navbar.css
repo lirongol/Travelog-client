@@ -17,13 +17,11 @@
    align-items: center;
    width: 98%;
    margin: 0 auto;
-   transition: 500ms;
 }
 
 @media (min-width: 1400px) {
    .nav-container {
       width: 70%;
-      transition: 500ms;
    }
 }
 

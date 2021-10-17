@@ -8,29 +8,51 @@ import { BiArrowBack } from 'react-icons/bi';
 import { ImLocation } from 'react-icons/im';
 import FileBase64 from 'react-file-base64';
 import LocationSearch from '../../LocationSearch/LocationSearch';
-import { useDispatch } from 'react-redux';
-import { createPost } from '../../../redux/actions/postActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost, setPostId, updatePost } from '../../../redux/actions/postActions';
 
 function PostEditor({ setPostEditor }) {
    const [postData, setPostData] = useState({
       postText: '',
       location: '',
       selectedFiles: '',
-      selectedVideo: ''
+      selectedVideo: '',
+      media: [],
+      video: []
    });
    const [mouseDown, setMouseDown] = useState(() => false);
    const [locationForm, setLocationForm] = useState(() => false);
-
-   const postText = useRef();
    const dispatch = useDispatch();
+   const postText = useRef();
+
+   const postId = useSelector(state => state.postId);
+   const post = useSelector(state => (
+      state.feedPosts.posts.find(post => post._id === postId)
+   ));
 
    useEffect(() => {
-      postText?.current?.focus();
-   }, [postText]);
+      if (post) {
+         setPostData({ ...post, selectedFiles: '', selectedVideo: '' });
+         postText.current.innerText = post.postText;
+      } else {
+         postText?.current?.focus();
+      }
+      // eslint-disable-next-line
+   }, [post])
 
    const handleSubmit = e => {
       e.preventDefault();
-      dispatch(createPost(postData));
+      if (postId) {
+         dispatch(updatePost(postId, postData));
+      } else {
+         dispatch(createPost(postData));
+      }
+      setPostEditor(false);
+      dispatch(setPostId(null));
+   }
+
+   const handleEditorClose = () => {
+      dispatch(setPostId(null));
       setPostEditor(false);
    }
 
@@ -45,11 +67,19 @@ function PostEditor({ setPostEditor }) {
    }
 
    return (
-      <div className="backdrop post-editor-container" onMouseDown={() => setMouseDown(true)} onMouseUp={() => mouseDown && setPostEditor(false)}>
-         <div className="post-editor" onMouseDown={e => { e.stopPropagation(); setMouseDown(false)}} onMouseUp={e => e.stopPropagation()}>
+      <div
+         className="backdrop post-editor-container"
+         onMouseDown={() => setMouseDown(true)}
+         onMouseUp={() => mouseDown && handleEditorClose()}
+      >
+         <div
+            className="post-editor"
+            onMouseDown={e => { e.stopPropagation(); setMouseDown(false) }}
+            onMouseUp={e => e.stopPropagation()}
+         >
             <div className="post-editor-header">
-               <h3>{locationForm ? 'Search Location' : 'Create Post'}</h3>
-               {!locationForm && <div className="post-editor-close-icon" onClick={() => setPostEditor(false)}>
+               <h3>{locationForm ? 'Search Location' : postId ? 'Edit Post' : 'Create Post'}</h3>
+               {!locationForm && <div className="post-editor-close-icon" onClick={handleEditorClose}>
                   <CgClose />
                </div>}
                {locationForm && <div className="location-search-back-icon" onClick={() => setLocationForm(false)}>
@@ -74,12 +104,11 @@ function PostEditor({ setPostEditor }) {
                   <div
                      className="post-text-input"
                      contentEditable
-                     innertext={postData.postText}
-                     onInput={e => setPostData({ ...postData, postText: e.target.innerText })}
+                     onInput={e => setPostData({...postData, postText: e.target.innerText})}
                      ref={postText}
                   >
                   </div>
-                  {!postData.postText && <span className="placeholder">Write your text here</span>}
+                  {postData.postText === '' && <span className="placeholder">Write your text here</span>}
                </div>
 
                {postData.selectedFiles && <div className="previews">
@@ -99,7 +128,24 @@ function PostEditor({ setPostEditor }) {
                      })}
                </div>}
 
-               {postData.selectedVideo && <div className="previews">
+               {postData.media && <div className="previews">
+                     {postData.media.map((file, index) => {
+                        return (
+                           <div className="preview-media" key={file._id}>
+                              <div className="delete-media" onClick={() => {
+                                 setPostData({...postData,
+                                    media: postData.media.filter((f, i) => i !== index)
+                                 })
+                              }}>
+                                 <AiOutlineDelete style={{color: 'red'}} />
+                              </div>
+                              <img src={file.url} alt="preview" />
+                           </div>
+                        )
+                     })}
+               </div>}
+
+               {postData.selectedVideo.length !== 0 && <div className="previews">
                   <div className="video-preview">
                      <div className="delete-media" onClick={() => setPostData({ ...postData, selectedVideo: ''})}>
                         <AiOutlineDelete style={{color: 'red'}} />
@@ -110,8 +156,19 @@ function PostEditor({ setPostEditor }) {
                   </div>
                </div>}
 
+               {postData?.video[0]?.url && <div className="previews">
+                  <div className="video-preview">
+                     <div className="delete-media" onClick={() => setPostData({ ...postData, video: ''})}>
+                        <AiOutlineDelete style={{color: 'red'}} />
+                     </div>
+                     <video controls>
+                        <source src={postData.video[0].url} type="video/mp4"/>
+                     </video>
+                  </div>
+               </div>}
+
                <div className="add-to-post-section">
-                  <div className="add-to-post" onClick={handleAddImages}>
+                  <div className="add-to-post" tabIndex="0" onClick={handleAddImages}>
                      <RiImageAddFill className="add-to-post-icon img-icon" />
                      <FileBase64
                         type="file"
@@ -126,7 +183,7 @@ function PostEditor({ setPostEditor }) {
                         })}
                      />
                   </div>
-                  <div className="add-to-post" onClick={handleAddVideo}>
+                  <div className="add-to-post" tabIndex="0" onClick={handleAddVideo}>
                      <AiOutlineVideoCameraAdd className="add-to-post-icon video-icon" />
                      <FileBase64
                         type="file"
@@ -134,7 +191,7 @@ function PostEditor({ setPostEditor }) {
                         onDone={file => setPostData({ ...postData, selectedVideo: file.base64 })}
                      />
                   </div>
-                  <div className="add-to-post" onClick={() => setLocationForm(true)}>
+                  <div className="add-to-post" tabIndex="0" onClick={() => setLocationForm(true)}>
                      <MdOutlineAddLocationAlt className="add-to-post-icon location-icon" />
                   </div>
                </div>
@@ -142,10 +199,18 @@ function PostEditor({ setPostEditor }) {
                <div className="btn-container">
                   <button
                      className="btn"
-                     style={postData.postText || postData.selectedFiles || postData.selectedVideo ? null : {backgroundColor: '#ff604eab', cursor: 'not-allowed'}}
-                     disabled={postData.postText || postData.selectedFiles || postData.selectedVideo ? false : true}
+                     style={
+                        postData.postText ||
+                        postData.selectedFiles ||
+                        postData.selectedVideo
+                        ? null : { backgroundColor: '#ff604eab', cursor: 'not-allowed' }}
+                     disabled={
+                        postData.postText ||
+                        postData.selectedFiles ||
+                        postData.selectedVideo
+                        ? false : true}
                   >
-                     Post
+                     {postId ? 'Save' : 'Post'}
                   </button>
                </div>
 

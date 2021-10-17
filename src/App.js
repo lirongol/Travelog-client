@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './app.css';
 import { Switch, Route, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 // pages
 import HomePage from './pages/HomePage/HomePage';
@@ -11,16 +12,16 @@ import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
-   const [profile, setProfile] = useState(JSON.parse(localStorage.getItem('profile')));
    const [profileDropdown, setProfileDropdown] = useState(() => false);
    const [notificationDropdown, setNotificationDropdown] = useState(() => false);
    const [postEditor, setPostEditor] = useState(() => false);
-
+   const dispatch = useDispatch();
    const location = useLocation();
 
    useEffect(() => {
-      setProfile(JSON.parse(localStorage.getItem('profile')));
-   }, [location]);
+      dispatch({ type: 'AUTH', payload: JSON.parse(localStorage.getItem('profile')) });
+   }, [location, dispatch]);
+   const profile = useSelector(state => state?.auth);
 
    const handleAppClick = () => {
       setProfileDropdown(false);

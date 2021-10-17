@@ -6,12 +6,20 @@ import { getFeedPosts } from '../../redux/actions/getPosts';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 function FeedPosts({ setPostEditor }) {
-   const posts = useSelector(state => state.feedPosts);
    const dispatch = useDispatch();
+   const { posts, info } = useSelector(state => state.feedPosts);
 
    useEffect(() => {
-         dispatch(getFeedPosts());
-   }, [dispatch]);
+      if (!posts.length) {
+         dispatch(getFeedPosts(0));
+      }
+   }, [dispatch, posts]);
+
+   const getMore = () => {
+      if (!info.noMorePosts) {
+         dispatch(getFeedPosts(info.nextPage));
+      }
+   }
 
    return (
       <div className="posts-container">
@@ -20,6 +28,7 @@ function FeedPosts({ setPostEditor }) {
             :
             posts.map(post => <Post key={post._id} post={post} setPostEditor={setPostEditor} />)
          }
+         {info.noMorePosts ? 'no more posts' : <button onClick={getMore}>load more</button>}
       </div>
    )
 }

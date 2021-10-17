@@ -115,11 +115,21 @@
    border-top: 1px solid rgb(220, 220, 220);
    border-bottom: 1px solid rgb(220, 220, 220);
    display: flex;
+   justify-content: center;
    user-select: none;
+   background-color: var(--gray-3);
 }
 
 .post-media img {
+   max-height: 600px;
+   max-width: 100%;
+   width: auto;
+   height: auto;
+}
+
+.post-media video {
    width: 100%;
+   max-height: 600px;
 }
 
 .votes-container {
