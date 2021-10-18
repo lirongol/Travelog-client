@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Navbar.css';
 import logo from '../../images/travelog-logo.png';
-import avatar from '../../images/profile-avatar.jpg'
 import { CgBell, CgSearch, CgMenu } from 'react-icons/cg';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { TiMessages } from 'react-icons/ti';
@@ -12,6 +11,7 @@ import MobileSidebar from '../Sidebar/MobileSidebar';
 import PostEditor from '../Posts/PostEditor/PostEditor';
 import ProfileDropdown from '../Dropdowns/ProfileDropdown';
 import NotificationDropdown from '../Dropdowns/NotificationDropdown';
+import { useSelector } from 'react-redux';
 
 function Navbar({
    setProfileDropdown,
@@ -24,6 +24,7 @@ function Navbar({
    const [mobileSearch, setMobileSearch] = useState(() => false);
    const [inputFocus, setInputFocus] = useState(() => false);
    const [mobileSidebar, setMobileSidebar] = useState(() => false);
+   const user = useSelector(state => state?.auth?.existingUser);
 
    return (
       <div className="navbar">
@@ -61,7 +62,7 @@ function Navbar({
                      setNotificationDropdown(false);
                   }}
                >
-                  <img src={avatar} style={profileDropdown ? {border: '2px solid var(--orange-1)'} : null} alt="profile-avatar" />
+                  <img src={user.profileImg.url} style={profileDropdown ? {border: '2px solid var(--orange-1)'} : null} alt="profile-avatar" />
                </div>
                {profileDropdown && <ProfileDropdown setProfileDropdown={setProfileDropdown} />}
 

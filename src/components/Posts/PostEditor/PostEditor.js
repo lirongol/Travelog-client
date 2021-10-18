@@ -158,7 +158,7 @@ function PostEditor({ setPostEditor }) {
 
                {postData?.video[0]?.url && <div className="previews">
                   <div className="video-preview">
-                     <div className="delete-media" onClick={() => setPostData({ ...postData, video: ''})}>
+                     <div className="delete-media" onClick={() => setPostData({ ...postData, video: [] })}>
                         <AiOutlineDelete style={{color: 'red'}} />
                      </div>
                      <video controls>
@@ -202,12 +202,16 @@ function PostEditor({ setPostEditor }) {
                      style={
                         postData.postText ||
                         postData.selectedFiles ||
-                        postData.selectedVideo
+                        postData.selectedVideo ||
+                        postData?.video?.length > 0 ||
+                        postData?.media?.length > 0
                         ? null : { backgroundColor: '#ff604eab', cursor: 'not-allowed' }}
                      disabled={
                         postData.postText ||
                         postData.selectedFiles ||
-                        postData.selectedVideo
+                        postData.selectedVideo ||
+                        postData?.video?.length > 0 ||
+                        postData?.media?.length > 0   
                         ? false : true}
                   >
                      {postId ? 'Save' : 'Post'}

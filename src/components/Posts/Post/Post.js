@@ -7,7 +7,7 @@ import { ImLocation, ImArrowUp, ImArrowDown } from 'react-icons/im';
 import moment from 'moment';
 import MediaSlider from '../../MediaSlider/MediaSlider';
 import { useSelector, useDispatch } from 'react-redux';
-import { setPostId } from '../../../redux/actions/postActions';
+import { setPostId, deletePost, postUpVote, postDownVote } from '../../../redux/actions/postActions';
 
 function Post({ post, setPostEditor }) {
    const [postDropdown, setPostDropdown] = useState(() => false);
@@ -20,10 +20,26 @@ function Post({ post, setPostEditor }) {
          dispatch(setPostId(post._id));
          setPostEditor(true);
       }
+      setPostDropdown(false)
+   }
+
+   const handlePostDelete = () => {
+      if (isAuth) {
+         dispatch(deletePost(post._id));
+      }
+      setPostDropdown(false)
+   }
+
+   const handlePostUpVote = () => {
+      dispatch(postUpVote(post._id));
+   }
+
+   const handlePostDownVote = () => {
+      dispatch(postDownVote(post._id));
    }
 
    return (
-      <div className="post">
+      <>
          <div className="post-header">
             <div className="post-header-left">
                <div className="post-creator-avatar">
@@ -55,14 +71,24 @@ function Post({ post, setPostEditor }) {
                   <HiDotsHorizontal/>
                </div>
                {postDropdown && <div className="post-options-dropdown">
-                  <div className="dropdown-link" style={{ padding: '7px' }} onClick={handlePostEdit}>
+                  {isAuth && <div
+                     className="dropdown-link"
+                     style={{ padding: '7px' }}
+                     onClick={handlePostEdit}
+                  >
                      <AiOutlineEdit className="dropdown-icon" />
                      <h3>Edit</h3>
-                  </div>
-                  <div className="dropdown-link" style={{ padding: '7px' }}>
+                  </div>}
+                  {isAuth && <div
+                     className="dropdown-link"
+                     style={{ padding: '7px' }}
+                     onClick={handlePostDelete}
+                  >
                      <AiOutlineDelete className="dropdown-icon" />
                      <h3>Delete</h3>
-                  </div>
+                     {/* are you sure you want to delete this post?
+                     any media attached to it will be deleted too */}
+                  </div>}
                </div>}
             </div>
          </div>
@@ -99,7 +125,7 @@ function Post({ post, setPostEditor }) {
          }
 
          <div className="votes-container">
-            <div className="vote">
+            <div className="vote" onClick={handlePostUpVote}>
                <div className="vote-icon">
                   <ImArrowUp
                      className={post.upVotes.indexOf(user?._id) !== -1 && 'selected-vote'}
@@ -107,7 +133,7 @@ function Post({ post, setPostEditor }) {
                </div>
                <span>{post.upVotes.length}</span>
             </div>
-            <div className="vote">
+            <div className="vote" onClick={handlePostDownVote}>
                <div className="vote-icon">
                   <ImArrowDown
                      className={post.downVotes.indexOf(user?._id) !== -1 && 'selected-vote'}
@@ -116,7 +142,7 @@ function Post({ post, setPostEditor }) {
                <span>{post.downVotes.length}</span>
             </div>
          </div>
-      </div>
+      </>
    )
 }
 

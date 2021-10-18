@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MediaSlider.css';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 function MediaSlider({ media }) {
    const [currentIndex, setCurrentIndex] = useState(0);
+
+   useEffect(() => {
+      setCurrentIndex(0);
+   }, [media])
 
    const handleNext = () => {
       if (currentIndex === media.length - 1) {

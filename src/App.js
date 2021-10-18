@@ -4,8 +4,9 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 // pages
-import HomePage from './pages/HomePage/HomePage';
 import AuthPage from './pages/AuthPage/AuthPage';
+import HomePage from './pages/HomePage/HomePage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 // components
 import Navbar from './components/Navbar/Navbar';
@@ -51,6 +52,26 @@ function App() {
 
                   <Route exact path="/">
                      <HomePage setPostEditor={setPostEditor} />
+                  </Route>
+
+                  <Route exact path="/videos">
+                     <div>VideosPage</div>
+                  </Route>
+
+                  <Route exact path="/tags">
+                     <div>TagsPage</div>
+                  </Route>
+
+                  <Route exact path="/tags/:tag">
+                     <div>TagPage</div>
+                  </Route>
+
+                  <Route exact path="/:username">
+                     <ProfilePage />
+                  </Route>
+
+                  <Route path="/">
+                     <div>404 not found</div>
                   </Route>
 
                </Switch>
