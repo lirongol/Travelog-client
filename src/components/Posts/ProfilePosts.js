@@ -1,45 +1,45 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import './Posts.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfilePosts, refreshProfilePosts } from '../../redux/actions/profilePosts';
 import Post from './Post/Post';
-import { useSelector, useDispatch } from 'react-redux';
-import { getFeedPosts, refreshFeedPosts } from '../../redux/actions/feedPosts';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-function FeedPosts({ setPostEditor }) {
+function ProfilePosts({ setPostEditor }) {
    const dispatch = useDispatch();
-   const { posts, info } = useSelector(state => state.feedPosts);
-   const user = useSelector(state => state?.auth?.existingUser);
+   const { posts, info } = useSelector(state => state.profilePosts);
+   const profile = useSelector(state => state?.profile);
    const observer = useRef(null);
    const limit = 10;
 
    useEffect(() => {
       if (!posts.length && !info.noMorePosts) {
-         dispatch(getFeedPosts(0, limit));
+         dispatch(getProfilePosts(profile._id, 0, 10));
       }
-   }, [dispatch, posts, info]);
+   }, [dispatch, posts, info, profile]);
 
    useEffect(() => {
       if (posts.length) {
-         dispatch(refreshFeedPosts(info.nextPage * limit));
+         dispatch(refreshProfilePosts(profile._id, info.nextPage * limit));
       }
       // eslint-disable-next-line
    }, [])
 
    useEffect(() => {
       const int = setInterval(() => {
-         dispatch(refreshFeedPosts(info.nextPage * limit));
+         dispatch(refreshProfilePosts(profile._id, info.nextPage * limit));
       }, 10000)
       return () => {
          clearInterval(int);
       }
-   }, [dispatch, info]);
+   }, [dispatch, info, profile]);
 
    // eslint-disable-next-line
    const loadMore = useCallback(lastPost => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(entries => {
          if (entries[0].isIntersecting && !info.noMorePosts) {
-            dispatch(getFeedPosts(info.nextPage, limit));
+            dispatch(getProfilePosts(profile._id, info.nextPage, limit));
          }
       })
       if (lastPost) observer.current.observe(lastPost);
@@ -49,10 +49,10 @@ function FeedPosts({ setPostEditor }) {
       <div className="posts-container">
          {!posts.length ?
             info.noMorePosts ?
-               !user.following.length ? <div>Start following travelers to fill your feed</div> : null
+               'no posts'
                :
                <CircularProgress style={{ color: 'var(--orange-1)' }} />
-            :
+            : 
             posts.map((post, index) => {
                if (posts.length - 1 === index) {
                   return (
@@ -69,11 +69,8 @@ function FeedPosts({ setPostEditor }) {
                }
             })
          }
-         {(posts.length > 0 &&  info.noMorePosts) && <div>
-            You went through your whole feed, want to explore?
-         </div>}
       </div>
    )
-}
+};
 
-export default FeedPosts;
+export default ProfilePosts;

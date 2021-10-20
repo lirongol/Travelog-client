@@ -25,27 +25,34 @@ function PostEditor({ setPostEditor }) {
    const dispatch = useDispatch();
    const postText = useRef();
 
+   const profile = useSelector(state => state.profile);
    const postId = useSelector(state => state.postId);
-   const post = useSelector(state => (
+   const postFromFeed = useSelector(state => (
       state.feedPosts.posts.find(post => post._id === postId)
    ));
+   const postFromProfile = useSelector(state => (
+      state.profilePosts.posts.find(post => post._id === postId)
+   ))
 
    useEffect(() => {
-      if (post) {
-         setPostData({ ...post, selectedFiles: '', selectedVideo: '' });
-         postText.current.innerText = post.postText;
+      if (postFromProfile) {
+         setPostData({ ...postFromProfile, selectedFiles: '', selectedVideo: '' });
+         postText.current.innerText = postFromProfile.postText;
+      } else if (postFromFeed) {
+         setPostData({ ...postFromFeed, selectedFiles: '', selectedVideo: '' });
+         postText.current.innerText = postFromFeed.postText;
       } else {
          postText?.current?.focus();
       }
       // eslint-disable-next-line
-   }, [post])
+   }, [])
 
    const handleSubmit = e => {
       e.preventDefault();
       if (postId) {
          dispatch(updatePost(postId, postData));
       } else {
-         dispatch(createPost(postData));
+         dispatch(createPost(postData, profile._id));
       }
       setPostEditor(false);
       dispatch(setPostId(null));

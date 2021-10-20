@@ -1,4 +1,11 @@
-import { CREATE_POST, UPDATE_POST, DELETE_POST, GET_FEED_POSTS, RESET_FEED_POSTS } from '../types';
+import {
+   CREATE_POST,
+   UPDATE_POST,
+   DELETE_POST,
+   GET_FEED_POSTS,
+   RESET_FEED_POSTS,
+   REFRESH_FEED_POSTS
+} from '../types';
 
 const feedPostsReducer = (feedPosts = { info: {}, posts: [] }, action) => {
    switch (action.type) {
@@ -23,6 +30,8 @@ const feedPostsReducer = (feedPosts = { info: {}, posts: [] }, action) => {
             info: action.payload.info,
             posts: [...feedPosts.posts, ...action.payload.posts]
          };
+      case REFRESH_FEED_POSTS:
+         return { ...feedPosts, posts: action.payload.posts };
       case RESET_FEED_POSTS:
          return { info: {}, posts: [] };
       default:

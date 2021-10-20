@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './app.css';
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { UPDATE_PROFILE, RESET_PROFILE_POSTS } from './redux/types';
 
 // pages
 import AuthPage from './pages/AuthPage/AuthPage';
@@ -18,11 +19,21 @@ function App() {
    const [postEditor, setPostEditor] = useState(() => false);
    const dispatch = useDispatch();
    const location = useLocation();
+   const history = useHistory();
 
    useEffect(() => {
       dispatch({ type: 'AUTH', payload: JSON.parse(localStorage.getItem('profile')) });
-   }, [location, dispatch]);
-   const profile = useSelector(state => state?.auth);
+      if (location.pathname !== '/:username' && history.action !== 'REPLACE') {
+         dispatch({ type: UPDATE_PROFILE, payload: {} });
+      }
+   }, [dispatch, location, history]);
+
+   useEffect(() => {
+      dispatch({ type: RESET_PROFILE_POSTS });
+      window.scrollTo(0, 0);
+   }, [dispatch, location])
+
+   const user = useSelector(state => state?.auth?.token);
 
    const handleAppClick = () => {
       setProfileDropdown(false);
@@ -31,7 +42,7 @@ function App() {
 
    return (
       <div className="app" onClick={handleAppClick}>
-         {profile && <Navbar
+         {user && <Navbar
             profileDropdown={profileDropdown}
             setProfileDropdown={setProfileDropdown}
             notificationDropdown={notificationDropdown}
@@ -39,14 +50,14 @@ function App() {
             setPostEditor={setPostEditor}
             postEditor={postEditor}
          />}
-         <div className={!profile ? null : 'container'}>
-            {profile && <div className="sidebar">
+         <div className={!user ? null : 'container'}>
+            {user && <div className="sidebar">
                <Sidebar />
             </div>}
-            <div className={!profile ? null : 'main-content'}>
+            <div className={!user ? null : 'main-content'}>
                <Switch>
 
-                  {!profile && <Route path="/">
+                  {!user && <Route path="/">
                      <AuthPage />
                   </Route>}
 
@@ -67,7 +78,7 @@ function App() {
                   </Route>
 
                   <Route exact path="/:username">
-                     <ProfilePage />
+                     <ProfilePage setPostEditor={setPostEditor} />
                   </Route>
 
                   <Route path="/">

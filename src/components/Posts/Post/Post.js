@@ -55,6 +55,7 @@ function Post({ post, setPostEditor }) {
                   </div>
                   <div className="post-time-ago">
                      <span>{moment(post.createdAt).fromNow()}</span>
+                     <span>{post.isEdited && ', Edited'}</span>
                   </div>
                </div>
             </div>
@@ -137,6 +138,7 @@ function Post({ post, setPostEditor }) {
                <div className="vote-icon">
                   <ImArrowDown
                      className={post.downVotes.indexOf(user?._id) !== -1 && 'selected-vote'}
+                     style={{color: 'var(--gray-1)'}}
                   />
                </div>
                <span>{post.downVotes.length}</span>

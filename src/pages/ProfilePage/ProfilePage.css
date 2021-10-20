@@ -1,0 +1,148 @@
+.profile-page {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
+
+.profile {
+   width: 100%;
+}
+
+.profile-header {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.profile-img {
+   width: 200px;
+   height: 200px;
+   display: flex;
+   border-radius: 50%;
+   border: 1px solid var(--orange-1);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.profile-img img {
+   border-radius: 50%;
+   width: 195px;
+   height: 195px;
+}
+
+.profile-name {
+   margin-top: 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.profile-name h3 {
+   color: var(--gray-1);
+}
+
+.follow-stats {
+   display: flex;
+   margin-top: 10px;
+}
+
+.follow-btn {
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.follow-btn * {
+   display: flex;
+}
+
+.unfollow-btn {
+   border: 1px solid var(--orange-1) !important;
+   background-color: transparent !important;
+   color: var(--orange-1) !important;
+}
+
+.stat {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin: auto 10px;
+}
+
+.bio-container {
+   margin-top: 10px;
+   width: 250px;
+   word-wrap: break-word;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.edit-bio {
+   margin-bottom: 10px;
+}
+
+.profile-content {
+   margin-top: 10px;
+}
+
+.profile-nav {
+   display: flex;
+   justify-content: center;
+   max-width: 450px;
+   margin: 0 auto;
+}
+
+.profile-content-type {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   padding: 5px;
+   background-color: var(--white-3);
+   border-radius: 5px;
+   user-select: none;
+}
+
+.content-type-icon {
+   font-size: 1.1rem;
+   margin-right: 5px;
+}
+
+@media (max-width: 600px) {
+   .profile-content-type {
+      width: 90%;
+      justify-content: space-evenly;
+   }
+   .content-type {
+      display: none;
+   }
+   .content-type-icon {
+      font-size: 22px;
+      margin-right: 0;
+   }
+}
+
+.profile-content-option {
+   width: 25%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 5px;
+   border-radius: 5px;
+}
+
+.profile-content-option:hover {
+   cursor: pointer;
+   background-color: var(--white-4);
+}
+
+.selected {
+   background-color: var(--white-4);
+   color: var(--orange-1);
+}
+
+.profile-content-container {
+   margin-top: 20px;
+}

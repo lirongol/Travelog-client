@@ -7,7 +7,7 @@ function MediaSlider({ media }) {
 
    useEffect(() => {
       setCurrentIndex(0);
-   }, [media])
+   }, [media.length])
 
    const handleNext = () => {
       if (currentIndex === media.length - 1) {

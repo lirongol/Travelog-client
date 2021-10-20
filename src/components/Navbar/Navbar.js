@@ -62,7 +62,7 @@ function Navbar({
                      setNotificationDropdown(false);
                   }}
                >
-                  <img src={user.profileImg.url} style={profileDropdown ? {border: '2px solid var(--orange-1)'} : null} alt="profile-avatar" />
+                  <img src={user?.profileImg?.url} style={profileDropdown ? {border: '1px solid var(--orange-1)'} : null} alt="profile-avatar" />
                </div>
                {profileDropdown && <ProfileDropdown setProfileDropdown={setProfileDropdown} />}
 
