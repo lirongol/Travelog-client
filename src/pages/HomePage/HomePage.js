@@ -6,7 +6,6 @@ import ExplorePosts from '../../components/Posts/ExplorePosts';
 
 function HomePage({ setPostEditor }) {
    const [explorePosts, setExplorePosts] = useState(() => false);
-
    document.title = 'Travelog';
 
    return (

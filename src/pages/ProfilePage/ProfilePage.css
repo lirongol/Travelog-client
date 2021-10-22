@@ -81,7 +81,73 @@
 }
 
 .edit-bio {
-   margin-bottom: 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.edit-bio form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 5px;
+}
+
+.edit-bio textarea {
+   resize: none;
+   outline: none;
+   border-radius: 5px;
+   padding: 5px;
+   font-size: 1rem;
+   font-family: var(--primary-font);
+}
+
+.edit-bio textarea:focus {
+   transition: 500ms;
+   outline: none;
+   border: 1px solid #ff614e;
+}
+
+.open-edit-bio-btn {
+   color: #ff614e;
+   margin-bottom: 7px;
+}
+
+.open-edit-bio-btn:hover {
+   cursor: pointer;
+}
+
+.save-bio-btn {
+   width: 100px !important;
+   font-size: 1rem !important;
+   margin-top: 5px;
+}
+
+.bio-btn-container {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   font-size: 0.9rem;
+   color: var(--gray-2);
+}
+
+.bio-error {
+   text-align: center;
+   margin: 2px auto;
+   color: rgb(233, 68, 68);
+}
+
+.bio {
+   margin-bottom: 5px;
+   max-width: 250px;
+   font-size: 1rem;
+   font-family: var(--primary-font);
+   white-space: pre-wrap;
+   white-space: -moz-pre-wrap;
+   white-space: -pre-wrap;
+   white-space: -o-pre-wrap;
+   word-wrap: break-word; 
 }
 
 .profile-content {

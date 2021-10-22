@@ -1,0 +1,67 @@
+.alert-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   background-color: #ffdbdd;
+   border: 1px solid #ffa6af;
+   border-radius: 5px;
+   padding: 5px;
+}
+
+.alert-msg {
+   color: #ff0019;
+}
+
+.error-popup-backdrop {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.error-msg-container {
+   min-width: 300px;
+   max-width: 400px;
+   width: 90%;
+   background-color: var(--white-1);
+   border-radius: 5px;
+   box-shadow: 0 0 6px -4px black;
+   position: relative;
+}
+
+.error-msg-header {
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-bottom: 1px solid var(--white-3);
+}
+
+.error-msg-body {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 50px;
+   text-align: center;
+}
+
+.error-confirm-btn {
+   display: flex;
+   justify-content: flex-end;
+   padding: 10px;
+}
+
+.btn-error-popup {
+   width: 80px !important;
+   height: 35px;
+   font-size: 1rem !important;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.error-popup-close-icon {
+   position: absolute;
+   right: 0;
+   top: 5px;
+}

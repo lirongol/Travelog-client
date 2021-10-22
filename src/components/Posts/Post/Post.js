@@ -99,7 +99,7 @@ function Post({ post, setPostEditor }) {
             <span>{post.location}</span>
          </div>}
 
-         {post?.postText !== '' && <div className="post-text">
+         {post.postText && <div className="post-text">
             <pre>{post?.postText}</pre>
          </div>}
 
@@ -117,7 +117,7 @@ function Post({ post, setPostEditor }) {
             </div>
          }
 
-         {post?.video[0]?.url &&
+         {post.video[0]?.url &&
             <div className="post-media">
                <video controls>
                   <source src={post.video[0].url} type="video/mp4"/>

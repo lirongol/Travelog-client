@@ -16,7 +16,8 @@ export const register = registerData => API.post('/user/register', registerData)
 
 // profile
 export const getProfile = username => API.get(`/user/${username}`);
-export const followProfile = username => API.patch(`/user/${username}`);
+export const followProfile = username => API.patch(`/user/followprofile/${username}`);
+export const updateBio = bio => API.patch('/user/updatebio', bio);
 
 // post
 export const getFeedPosts = (page, limit) => (

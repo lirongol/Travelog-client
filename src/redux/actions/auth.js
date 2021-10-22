@@ -1,5 +1,5 @@
 import * as api from '../../api';
-import { AUTH, LOGOUT, RESET_FEED_POSTS } from '../types';
+import { AUTH, LOGOUT, RESET_FEED_POSTS, LOGIN_ERROR, REGISTER_ERROR } from '../types';
 
 export const login = (loginData, history) => async dispatch => {
    try {
@@ -7,7 +7,7 @@ export const login = (loginData, history) => async dispatch => {
       dispatch({ type: AUTH, payload: data });
       history.push('/');
    } catch (error) {
-      console.log(error);
+      dispatch({ type: LOGIN_ERROR, payload: error.response.data.msg });
    }
 }
 
@@ -17,7 +17,7 @@ export const register = (registerData, history) => async dispatch => {
       dispatch({ type: AUTH, payload: data });
       history.push('/');
    } catch (error) {
-      console.log(error);
+      dispatch({ type: REGISTER_ERROR, payload: error.response.data.msg });
    }
 }
 

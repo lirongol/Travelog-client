@@ -6,7 +6,9 @@ import {
    DELETE_POST,
    UPDATE_PROFILE_POST,
    DELETE_PROFILE_POST,
-   CREATE_PROFILE_POST
+   CREATE_PROFILE_POST,
+   CREATE_POST_ERROR,
+   UPDATE_POST_ERROR
 } from '../types';
 
 export const createPost = (post, profileId) => async dispatch => {
@@ -15,7 +17,7 @@ export const createPost = (post, profileId) => async dispatch => {
       dispatch({ type: CREATE_POST, payload: data });
       dispatch({ type: CREATE_PROFILE_POST, payload: { data, profileId } });
    } catch (err) {
-      console.log(err);
+      dispatch({ type: CREATE_POST_ERROR, payload: err.response.data.msg });
    }
 }
 
@@ -25,7 +27,7 @@ export const updatePost = (postId, post) => async dispatch => {
       dispatch({ type: UPDATE_POST, payload: data });
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
    } catch (err) {
-      console.log(err);
+      dispatch({ type: UPDATE_POST_ERROR, payload: err.response.data.msg });
    }
 }
 

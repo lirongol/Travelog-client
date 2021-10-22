@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { login, register } from '../../redux/actions/auth';
 import './AuthPage.css';
 import logo from '../../images/travelog-logo.png';
+import Alert from '../../components/Error/Alert';
 
 function AuthPage() {
    const [loginData, setLoginData] = useState({ email: '', password: '' })
@@ -17,6 +18,7 @@ function AuthPage() {
       passwordVerification: '',
    });
    const [authType, setAuthType] = useState(() => false);
+   const { loginError, registerError } = useSelector(state => state.error);
 
    const dispatch = useDispatch();
    const history = useHistory();
@@ -60,6 +62,10 @@ function AuthPage() {
                      value={loginData.password}
                      onChange={e => setLoginData({ ...loginData, password: e.target.value })}
                   />
+
+                  {loginError && <div style={{ display: 'flex', marginTop: '5px' }}>
+                     <Alert msg={loginError} />
+                  </div>}
 
                   <button className="btn btn-auth" type="submit">Login</button>
                </form>
@@ -137,6 +143,10 @@ function AuthPage() {
                      value={registerData.passwordVerification}
                      onChange={e => setRegisterData({ ...registerData, passwordVerification: e.target.value })}
                   />
+
+                  {registerError && <div style={{ display: 'flex', marginTop: '5px' }}>
+                     <Alert msg={registerError} />
+                  </div>}
                   
                   <button className="btn btn-auth" type="submit">Register</button>
                </form>

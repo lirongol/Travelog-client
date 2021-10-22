@@ -2,16 +2,26 @@ import React, { useState, useEffect } from 'react';
 import './app.css';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { UPDATE_PROFILE, RESET_PROFILE_POSTS } from './redux/types';
+import {
+   UPDATE_PROFILE,
+   RESET_PROFILE_POSTS,
+   GET_PROFILE_ERROR,
+   LOGIN_ERROR,
+   REGISTER_ERROR,
+   CREATE_POST_ERROR,
+   UPDATE_POST_ERROR
+} from './redux/types';
 
 // pages
 import AuthPage from './pages/AuthPage/AuthPage';
 import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import NotFound from './pages/404/NotFound';
 
 // components
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
+import PopUp from './components/Error/PopUp';
 
 function App() {
    const [profileDropdown, setProfileDropdown] = useState(() => false);
@@ -30,18 +40,43 @@ function App() {
 
    useEffect(() => {
       dispatch({ type: RESET_PROFILE_POSTS });
+      dispatch({ type: LOGIN_ERROR, payload: '' });
+      dispatch({ type: REGISTER_ERROR, payload: '' });
+      dispatch({ type: GET_PROFILE_ERROR, payload: '' });
       window.scrollTo(0, 0);
    }, [dispatch, location])
 
    const user = useSelector(state => state?.auth?.token);
+   const error = useSelector(state => state.error);
 
    const handleAppClick = () => {
       setProfileDropdown(false);
       setNotificationDropdown(false);
    }
 
+   const dismissCreatePostError = () => dispatch({ type: CREATE_POST_ERROR, payload: '' });
+   const dismissUpdatePostError = () => dispatch({ type: UPDATE_POST_ERROR, payload: '' });
+
    return (
       <div className="app" onClick={handleAppClick}>
+
+         {/* popup errors */}
+         {error.createPostError &&
+            <PopUp
+            title="Create Post Error"
+            msg={error.createPostError}
+            dismiss={dismissCreatePostError}
+            />
+         }
+
+         {error.updatePostError && 
+            <PopUp
+            title="Update Post Error"
+            msg={error.updatePostError}
+            dismiss={dismissUpdatePostError}
+            />
+         }
+
          {user && <Navbar
             profileDropdown={profileDropdown}
             setProfileDropdown={setProfileDropdown}
@@ -77,12 +112,16 @@ function App() {
                      <div>TagPage</div>
                   </Route>
 
+                  <Route exact path="/404">
+                     <NotFound />
+                  </Route>
+
                   <Route exact path="/:username">
                      <ProfilePage setPostEditor={setPostEditor} />
                   </Route>
 
                   <Route path="/">
-                     <div>404 not found</div>
+                     <NotFound />
                   </Route>
 
                </Switch>
