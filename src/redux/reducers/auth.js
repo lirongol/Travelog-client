@@ -1,4 +1,4 @@
-import { AUTH, LOGOUT } from '../types';
+import { AUTH, LOGOUT, AUTH_IMG_UPDATE } from '../types';
 
 const authReducer = (auth = null, action) => {
    switch (action.type) {
@@ -8,6 +8,11 @@ const authReducer = (auth = null, action) => {
       case LOGOUT:
          localStorage.clear();
          return null;
+      case AUTH_IMG_UPDATE:
+         const profile = JSON.parse(localStorage.getItem('profile'));
+         profile.existingUser.profileImg = action.payload.profileImg;
+         localStorage.setItem('profile', JSON.stringify(profile));
+         return JSON.parse(localStorage.getItem('profile'));
       default:
          return auth;
    }

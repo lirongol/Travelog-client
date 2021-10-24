@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import './ProfilePage.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getProfile, followProfile, updateBio } from '../../redux/actions/profile';
+import { getProfile, followProfile, updateBio, updateProfileImg } from '../../redux/actions/profile';
 import { AiOutlineCheck, AiOutlineVideoCamera } from 'react-icons/ai';
 import { BsFilePost } from 'react-icons/bs';
 import { IoMdImages } from 'react-icons/io';
 import { FaPassport } from 'react-icons/fa';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ProfilePosts from '../../components/Posts/ProfilePosts';
 import { Redirect } from 'react-router-dom';
+import FileBase64 from 'react-file-base64';
 
 function ProfilePage({ setPostEditor }) {
    const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function ProfilePage({ setPostEditor }) {
    const [editBio, setEditBio] = useState(false);
    const [bio, setBio] = useState('');
    const [bioError, setBioError] = useState('');
+   const [isMouseOver, setIsMouseOver] = useState(false);
 
    const user = useSelector(state => state?.auth?.existingUser);
    const profile = useSelector(state => state?.profile);
@@ -53,6 +56,15 @@ function ProfilePage({ setPostEditor }) {
       }
    }
 
+   const handleSelectFile = () => {
+      const inputVideo = document.querySelectorAll('input[type="file"]')[0];
+      inputVideo.click();
+   }
+
+   const uploadProfileImg = base64 => {
+      dispatch(updateProfileImg(base64));
+   }
+
    return (
       getProfileError ? <Redirect to="/404" /> :
       <div className="profile-page">
@@ -61,8 +73,21 @@ function ProfilePage({ setPostEditor }) {
 
                <div className="profile-header">
 
-                  <div className="profile-img">
-                     <img src={profile?.profileImg?.url} alt="profile" />
+                  <div
+                     className="profile-img"
+                     onMouseOver={() => setIsMouseOver(true)}
+                     onMouseLeave={() => setIsMouseOver(false)}
+                  >
+                     <img src={profile.profileImg?.url} alt="profile" />
+                     {(isMyProfile && isMouseOver) && <div className="upload-profile-img" onClick={handleSelectFile}>
+                        <AiOutlineCloudUpload style={{fontSize: '1.5rem'}} />
+                        <h3>Upload</h3>
+                        <FileBase64
+                           type="file"
+                           accept="image/*"
+                           onDone={file => uploadProfileImg(file.base64)}
+                        />
+                     </div>}
                   </div>
 
                   <div className="profile-name">

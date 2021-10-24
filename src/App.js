@@ -9,7 +9,8 @@ import {
    LOGIN_ERROR,
    REGISTER_ERROR,
    CREATE_POST_ERROR,
-   UPDATE_POST_ERROR
+   UPDATE_POST_ERROR,
+   PROFILE_IMG_ERROR
 } from './redux/types';
 
 // pages
@@ -56,6 +57,7 @@ function App() {
 
    const dismissCreatePostError = () => dispatch({ type: CREATE_POST_ERROR, payload: '' });
    const dismissUpdatePostError = () => dispatch({ type: UPDATE_POST_ERROR, payload: '' });
+   const dismissProfileImgError = () => dispatch({ type: PROFILE_IMG_ERROR, payload: '' });
 
    return (
       <div className="app" onClick={handleAppClick}>
@@ -74,6 +76,14 @@ function App() {
             title="Update Post Error"
             msg={error.updatePostError}
             dismiss={dismissUpdatePostError}
+            />
+         }
+
+         {error.profileImgError &&
+            <PopUp
+            title="Profile Image Error"
+            msg={error.profileImgError}
+            dismiss={dismissProfileImgError}
             />
          }
 

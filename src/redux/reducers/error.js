@@ -3,7 +3,8 @@ import {
    LOGIN_ERROR,
    GET_PROFILE_ERROR,
    CREATE_POST_ERROR,
-   UPDATE_POST_ERROR
+   UPDATE_POST_ERROR,
+   PROFILE_IMG_ERROR
 } from '../types';
 
 const errorReducer = (error = {
@@ -11,7 +12,8 @@ const errorReducer = (error = {
    loginError: '',
    getProfileError: '',
    createPostError: '',
-   updatePostError: ''
+   updatePostError: '',
+   profileImgError: ''
 }, action) => {
    switch (action.type) {
       case REGISTER_ERROR:
@@ -24,6 +26,8 @@ const errorReducer = (error = {
          return { ...error, createPostError: action.payload };
       case UPDATE_POST_ERROR:
          return { ...error, updatePostError: action.payload };
+      case PROFILE_IMG_ERROR:
+         return { ...error, profileImgError: action.payload };
       default:
          return error;
    }
