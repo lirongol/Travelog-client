@@ -44,7 +44,7 @@ function App() {
       dispatch({ type: LOGIN_ERROR, payload: '' });
       dispatch({ type: REGISTER_ERROR, payload: '' });
       dispatch({ type: GET_PROFILE_ERROR, payload: '' });
-      window.scrollTo(0, 0);
+      // window.scrollTo(0, 0);
    }, [dispatch, location])
 
    const user = useSelector(state => state?.auth?.token);

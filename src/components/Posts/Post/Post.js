@@ -100,7 +100,15 @@ function Post({ post, setPostEditor }) {
          </div>}
 
          {post.postText && <div className="post-text">
-            <pre>{post?.postText}</pre>
+            <pre>{post.postText}</pre>
+         </div>}
+
+         {post.tags.length > 0 && <div className="post-tags">
+            {post.tags.map(tag => {
+               return (
+                  <Link key={tag} className="tag" to={`/tags/${tag}`}>#{tag}</Link>
+               )
+            })}
          </div>}
 
          {post.media.length !== 0 &&

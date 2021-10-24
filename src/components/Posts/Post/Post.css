@@ -108,7 +108,23 @@
    white-space: -pre-wrap;
    white-space: -o-pre-wrap;
    word-wrap: break-word; 
+}
 
+.post-tags {
+   width: 95%;
+   margin: 0 auto;
+   margin-bottom: 10px;
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.tag {
+   padding: 4px;
+   margin: 1px;
+   border-radius: 5px;
+   text-decoration: none;
+   background-color: var(--orange-2);
+   color: inherit;
 }
 
 .post-media {
