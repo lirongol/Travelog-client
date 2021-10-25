@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './HomePage.css';
 import { MdRssFeed, MdTravelExplore } from 'react-icons/md';
 import FeedPosts from '../../components/Posts/FeedPosts';
 import ExplorePosts from '../../components/Posts/ExplorePosts';
 
-function HomePage({ setPostEditor }) {
-   const [explorePosts, setExplorePosts] = useState(() => false);
+function HomePage({ setPostEditor, explorePosts, setExplorePosts }) {
    document.title = 'Travelog';
 
    return (
@@ -22,7 +21,7 @@ function HomePage({ setPostEditor }) {
          </div>
 
          {explorePosts ?
-            <ExplorePosts />
+            <ExplorePosts setPostEditor={setPostEditor} />
             :
             <FeedPosts setPostEditor={setPostEditor} />
          }

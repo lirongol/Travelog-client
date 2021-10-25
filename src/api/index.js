@@ -33,6 +33,9 @@ export const getProfilePosts = (userId, page, limit) => (
 export const refreshProfilePosts = (userId, limit) => (
    API.get(`/post/refreshprofileposts/${userId}?limit=${limit}`)
 )
+export const getExplorePosts = (page, limit) => (
+   API.get(`/post/exploreposts?page=${page}&limit=${limit}`)
+);
 export const createPost = newPost => API.post('/post', newPost);
 export const updatePost = (id, post) => API.patch(`/post/${id}`, post);
 export const postUpVote = id => API.patch(`/post/${id}/postupVote`);

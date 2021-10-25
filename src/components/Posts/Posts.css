@@ -4,3 +4,23 @@
    flex-direction: column;
    align-items: center;
 }
+
+.explore-refresh-btn {
+   margin-bottom: 15px;
+   display: flex;
+   background-color: var(--white-3);
+   padding: 10px;
+   border-radius: 50%;
+   position: sticky;
+   top: 70px;
+}
+
+.explore-refresh-btn * {
+   color: var(--orange-1);
+   font-size: 1.8rem;
+}
+
+.explore-refresh-btn:hover {
+   cursor: pointer;
+   background-color: var(--white-4);
+}

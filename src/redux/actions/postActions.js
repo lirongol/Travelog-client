@@ -8,7 +8,8 @@ import {
    DELETE_PROFILE_POST,
    CREATE_PROFILE_POST,
    CREATE_POST_ERROR,
-   UPDATE_POST_ERROR
+   UPDATE_POST_ERROR,
+   UPDATE_EXPLORE_POST
 } from '../types';
 
 export const createPost = (post, profileId) => async dispatch => {
@@ -46,6 +47,7 @@ export const postUpVote = postId => async dispatch => {
       const { data } = await api.postUpVote(postId);
       dispatch({ type: UPDATE_POST, payload: data });
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
+      dispatch({ type: UPDATE_EXPLORE_POST, payload: data });
    } catch (err) {
       console.log(err);
    }
@@ -56,6 +58,7 @@ export const postDownVote = postId => async dispatch => {
       const { data } = await api.postDownVote(postId);
       dispatch({ type: UPDATE_POST, payload: data });
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
+      dispatch({ type: UPDATE_EXPLORE_POST, payload: data });
    } catch (err) {
       console.log(err)
    }

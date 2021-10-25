@@ -5,6 +5,7 @@ import postId from './postId';
 import profile from './profile';
 import profilePosts from './profilePosts';
 import error from './error';
+import explorePosts from './explorePosts';
 
 const reducers = combineReducers({
    auth,
@@ -12,6 +13,7 @@ const reducers = combineReducers({
    postId,
    profile,
    profilePosts,
+   explorePosts,
    error
 });
 

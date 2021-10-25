@@ -27,6 +27,7 @@ import PopUp from './components/Error/PopUp';
 function App() {
    const [profileDropdown, setProfileDropdown] = useState(() => false);
    const [notificationDropdown, setNotificationDropdown] = useState(() => false);
+   const [explorePosts, setExplorePosts] = useState(() => false);
    const [postEditor, setPostEditor] = useState(() => false);
    const dispatch = useDispatch();
    const location = useLocation();
@@ -107,7 +108,11 @@ function App() {
                   </Route>}
 
                   <Route exact path="/">
-                     <HomePage setPostEditor={setPostEditor} />
+                     <HomePage
+                        setPostEditor={setPostEditor}
+                        explorePosts={explorePosts}
+                        setExplorePosts={setExplorePosts}
+                     />
                   </Route>
 
                   <Route exact path="/videos">
