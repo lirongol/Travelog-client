@@ -231,3 +231,8 @@
 .profile-content-container {
    margin-top: 20px;
 }
+
+.followers-count,
+.following-count:hover {
+   cursor: pointer;
+}

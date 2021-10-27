@@ -1,0 +1,46 @@
+.follow-list-backdrop {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.follow-list-container {
+   width: 300px;
+   height: 300px;
+   background-color: var(--white-1);
+   border-radius: 5px;
+   position: relative;
+}
+
+.follow-list-header {
+   height: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border-bottom: 1px solid var(--white-3);
+}
+
+.follow-list-body {
+   height: 249px;
+   overflow-y: scroll;
+}
+
+.user-preview {
+   text-decoration: none;
+   color: inherit;
+   display: flex;
+   align-items: center;
+   padding: 5px;
+   border-radius: 5px;
+}
+
+.user-preview:hover {
+   background-color: var(--white-3);
+}
+
+.user-preview img {
+   width: 45px;
+   height: 45px;
+   margin: 0 5px;
+   border-radius: 50%;
+}

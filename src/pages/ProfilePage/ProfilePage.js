@@ -12,6 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ProfilePosts from '../../components/Posts/ProfilePosts';
 import { Redirect } from 'react-router-dom';
 import FileBase64 from 'react-file-base64';
+import FollowList from '../../components/FollowList/FollowList';
 
 function ProfilePage({ setPostEditor }) {
    const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function ProfilePage({ setPostEditor }) {
    const [bio, setBio] = useState('');
    const [bioError, setBioError] = useState('');
    const [isMouseOver, setIsMouseOver] = useState(false);
+   const [followList, setFollowList] = useState('');
 
    const user = useSelector(state => state?.auth?.existingUser);
    const profile = useSelector(state => state?.profile);
@@ -104,15 +106,17 @@ function ProfilePage({ setPostEditor }) {
                            {profile.followers.indexOf(user._id) !== -1 ? 'Following' : 'Follow'}
                         </button>
                      </div>}
-                     <div className="followers-count stat">
+                     <div className="followers-count stat" onClick={() => setFollowList('Followers')}>
                         <h4>Followers</h4>
                         <span>{profile.followers.length}</span>
                      </div>
-                     <div className="following-count stat">
+                     <div className="following-count stat" onClick={() => setFollowList('Following')}>
                         <h4>Following</h4>
                         <span>{profile.following.length}</span>
                      </div>
                   </div>
+                  
+                  {followList && <FollowList title={followList} setFollowList={setFollowList} username={username} />}
 
                   <div className="bio-container">
                      {isMyProfile && <div className="edit-bio">

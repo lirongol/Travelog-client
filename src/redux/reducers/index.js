@@ -6,6 +6,7 @@ import profile from './profile';
 import profilePosts from './profilePosts';
 import error from './error';
 import explorePosts from './explorePosts';
+import followList from './followList';
 
 const reducers = combineReducers({
    auth,
@@ -14,6 +15,7 @@ const reducers = combineReducers({
    profile,
    profilePosts,
    explorePosts,
+   followList,
    error
 });
 
