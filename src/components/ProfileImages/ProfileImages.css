@@ -1,0 +1,35 @@
+.profile-images-container {
+   display: flex;
+   justify-content: center;
+}
+
+.images-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+}
+
+.img-container {
+   width: 190px;
+   height: 190px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: var(--white-3);
+   overflow: hidden;
+   border-radius: 5px;
+   margin: 5px;
+}
+
+.img-container:hover {
+   cursor: pointer;
+   opacity: 0.8;
+}
+
+.img-container img {
+   width: auto;
+   height: auto;
+   min-height: 190px;
+   max-height: 270px;
+   max-width: 300px;
+}

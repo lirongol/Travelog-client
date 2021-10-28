@@ -18,6 +18,7 @@ export const register = registerData => API.post('/user/register', registerData)
 export const getProfile = username => API.get(`/user/${username}`);
 export const getProfileFollowers = username => API.get(`/user/${username}/followers`);
 export const getProfileFollowing = username => API.get(`/user/${username}/following`);
+export const getProfileImages = username => API.get(`/user/${username}/images`);
 export const followProfile = username => API.patch(`/user/followprofile/${username}`);
 export const updateBio = bio => API.patch('/user/updatebio', bio);
 export const updateProfileImg = img => API.patch('/user/updateprofileimg', img);

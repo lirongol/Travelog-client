@@ -13,6 +13,7 @@ import ProfilePosts from '../../components/Posts/ProfilePosts';
 import { Redirect } from 'react-router-dom';
 import FileBase64 from 'react-file-base64';
 import FollowList from '../../components/FollowList/FollowList';
+import ProfileImages from '../../components/ProfileImages/ProfileImages';
 
 function ProfilePage({ setPostEditor }) {
    const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function ProfilePage({ setPostEditor }) {
 
    useEffect(() => {
       dispatch(getProfile(username));
+      setSelected('posts');
    }, [dispatch, username]);
 
    const handleUserFollow = () => {
@@ -184,6 +186,10 @@ function ProfilePage({ setPostEditor }) {
 
                      {selected === 'posts' && <div className="posts-container">
                         <ProfilePosts setPostEditor={setPostEditor} />
+                     </div>}
+                        
+                     {selected === 'images' && <div>
+                        <ProfileImages username={username} />
                      </div>}
 
                   </div>

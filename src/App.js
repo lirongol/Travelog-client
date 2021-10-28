@@ -10,7 +10,8 @@ import {
    REGISTER_ERROR,
    CREATE_POST_ERROR,
    UPDATE_POST_ERROR,
-   PROFILE_IMG_ERROR
+   PROFILE_IMG_ERROR,
+   GET_PROFILE_IMAGES
 } from './redux/types';
 
 // pages
@@ -37,6 +38,7 @@ function App() {
       dispatch({ type: 'AUTH', payload: JSON.parse(localStorage.getItem('profile')) });
       if (location.pathname !== '/:username' && history.action !== 'REPLACE') {
          dispatch({ type: UPDATE_PROFILE, payload: {} });
+         dispatch({ type: GET_PROFILE_IMAGES, payload: [] });
       }
    }, [dispatch, location, history]);
 
