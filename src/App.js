@@ -11,7 +11,8 @@ import {
    CREATE_POST_ERROR,
    UPDATE_POST_ERROR,
    PROFILE_IMG_ERROR,
-   GET_PROFILE_IMAGES
+   GET_PROFILE_IMAGES,
+   GET_PROFILE_VIDEOS
 } from './redux/types';
 
 // pages
@@ -39,6 +40,7 @@ function App() {
       if (location.pathname !== '/:username' && history.action !== 'REPLACE') {
          dispatch({ type: UPDATE_PROFILE, payload: {} });
          dispatch({ type: GET_PROFILE_IMAGES, payload: [] });
+         dispatch({ type: GET_PROFILE_VIDEOS, payload: [] });
       }
    }, [dispatch, location, history]);
 

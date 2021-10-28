@@ -8,6 +8,7 @@ import error from './error';
 import explorePosts from './explorePosts';
 import followList from './followList';
 import profileImages from './profileImages';
+import profileVideos from "./profileVideos";
 
 const reducers = combineReducers({
    auth,
@@ -18,6 +19,7 @@ const reducers = combineReducers({
    explorePosts,
    followList,
    profileImages,
+   profileVideos,
    error
 });
 

@@ -14,6 +14,7 @@ import { Redirect } from 'react-router-dom';
 import FileBase64 from 'react-file-base64';
 import FollowList from '../../components/FollowList/FollowList';
 import ProfileImages from '../../components/ProfileImages/ProfileImages';
+import ProfileVideos from '../../components/ProfileVideos/ProfileVideos';
 
 function ProfilePage({ setPostEditor }) {
    const dispatch = useDispatch();
@@ -190,6 +191,10 @@ function ProfilePage({ setPostEditor }) {
                         
                      {selected === 'images' && <div>
                         <ProfileImages username={username} />
+                     </div>}
+                        
+                     {selected === 'videos' && <div className="posts-container">
+                        <ProfileVideos username={username} />
                      </div>}
 
                   </div>
