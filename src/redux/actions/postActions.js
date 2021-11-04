@@ -9,7 +9,9 @@ import {
    CREATE_PROFILE_POST,
    CREATE_POST_ERROR,
    UPDATE_POST_ERROR,
-   UPDATE_EXPLORE_POST
+   UPDATE_EXPLORE_POST,
+   UPDATE_TAG_POST,
+   DELETE_TAG_POST
 } from '../types';
 
 export const createPost = (post, profileId) => async dispatch => {
@@ -27,6 +29,7 @@ export const updatePost = (postId, post) => async dispatch => {
       const { data } = await api.updatePost(postId, post);
       dispatch({ type: UPDATE_POST, payload: data });
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
+      dispatch({ type: UPDATE_TAG_POST, payload: data });
    } catch (err) {
       dispatch({ type: UPDATE_POST_ERROR, payload: err.response.data.msg });
    }
@@ -37,6 +40,7 @@ export const deletePost = postId => async dispatch => {
       const { data } = await api.deletePost(postId);
       dispatch({ type: DELETE_POST, payload: { data, postId } });
       dispatch({ type: DELETE_PROFILE_POST, payload: { data, postId } });
+      dispatch({ type: DELETE_TAG_POST, payload: { data, postId } });
    } catch (err) {
       console.log(err)
    }
@@ -48,6 +52,7 @@ export const postUpVote = postId => async dispatch => {
       dispatch({ type: UPDATE_POST, payload: data });
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
       dispatch({ type: UPDATE_EXPLORE_POST, payload: data });
+      dispatch({ type: UPDATE_TAG_POST, payload: data });
    } catch (err) {
       console.log(err);
    }
@@ -59,6 +64,7 @@ export const postDownVote = postId => async dispatch => {
       dispatch({ type: UPDATE_POST, payload: data });
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
       dispatch({ type: UPDATE_EXPLORE_POST, payload: data });
+      dispatch({ type: UPDATE_TAG_POST, payload: data });
    } catch (err) {
       console.log(err)
    }

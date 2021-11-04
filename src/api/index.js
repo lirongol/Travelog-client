@@ -25,23 +25,17 @@ export const updateBio = bio => API.patch('/user/updatebio', bio);
 export const updateProfileImg = img => API.patch('/user/updateprofileimg', img);
 
 // post
-export const getFeedPosts = (page, limit) => (
-   API.get(`/post/feedposts?page=${page}&limit=${limit}`)
-);
-export const refreshFeedPosts = limit => (
-   API.get(`/post/refreshfeed?limit=${limit}`)
-);
-export const getProfilePosts = (userId, page, limit) => (
-   API.get(`/post/profileposts/${userId}?page=${page}&limit=${limit}`)
-);
-export const refreshProfilePosts = (userId, limit) => (
-   API.get(`/post/refreshprofileposts/${userId}?limit=${limit}`)
-)
-export const getExplorePosts = (page, limit) => (
-   API.get(`/post/exploreposts?page=${page}&limit=${limit}`)
-);
+export const getFeedPosts = (page, limit) => API.get(`/post/feedposts?page=${page}&limit=${limit}`);
+export const refreshFeedPosts = limit => API.get(`/post/refreshfeed?limit=${limit}`);
+export const getProfilePosts = (userId, page, limit) => API.get(`/post/profileposts/${userId}?page=${page}&limit=${limit}`);
+export const refreshProfilePosts = (userId, limit) => API.get(`/post/refreshprofileposts/${userId}?limit=${limit}`);
+export const getExplorePosts = (page, limit) => API.get(`/post/exploreposts?page=${page}&limit=${limit}`);
+export const getTagPosts = (tag, page, limit) => API.get(`/post/tagposts/${tag}?page=${page}&limit=${limit}`);
 export const createPost = newPost => API.post('/post', newPost);
 export const updatePost = (id, post) => API.patch(`/post/${id}`, post);
 export const postUpVote = id => API.patch(`/post/${id}/postupVote`);
 export const postDownVote = id => API.patch(`/post/${id}/postdownVote`);
 export const deletePost = id => API.delete(`/post/${id}`);
+
+// app
+export const getTags = () => API.get('/app/tags');

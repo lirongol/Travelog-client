@@ -32,7 +32,10 @@ function PostEditor({ setPostEditor }) {
    ));
    const postFromProfile = useSelector(state => (
       state.profilePosts.posts.find(post => post._id === postId)
-   ))
+   ));
+   const postFromTags = useSelector(state => (
+      state.tags.posts.find(post => post._id === postId)
+   ));
 
    useEffect(() => {
       if (postFromProfile) {
@@ -41,6 +44,9 @@ function PostEditor({ setPostEditor }) {
       } else if (postFromFeed) {
          setPostData({ ...postFromFeed, selectedFiles: '', selectedVideo: '' });
          postText.current.innerText = postFromFeed.postText;
+      } else if (postFromTags) {
+         setPostData({ ...postFromTags, selectedFiles: '', selectedVideo: '' });
+         postText.current.innerText = postFromTags.postText;
       } else {
          postText?.current?.focus();
       }

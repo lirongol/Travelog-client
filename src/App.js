@@ -12,7 +12,8 @@ import {
    UPDATE_POST_ERROR,
    PROFILE_IMG_ERROR,
    GET_PROFILE_IMAGES,
-   GET_PROFILE_VIDEOS
+   GET_PROFILE_VIDEOS,
+   CLEAR_TAG_POSTS
 } from './redux/types';
 
 // pages
@@ -20,6 +21,8 @@ import AuthPage from './pages/AuthPage/AuthPage';
 import HomePage from './pages/HomePage/HomePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import NotFound from './pages/404/NotFound';
+import TagsPage from './pages/TagsPage/TagsPage';
+import TagPage from './pages/TagPage/TagPage';
 
 // components
 import Navbar from './components/Navbar/Navbar';
@@ -45,6 +48,7 @@ function App() {
    }, [dispatch, location, history]);
 
    useEffect(() => {
+      dispatch({ type: CLEAR_TAG_POSTS });
       dispatch({ type: RESET_PROFILE_POSTS });
       dispatch({ type: LOGIN_ERROR, payload: '' });
       dispatch({ type: REGISTER_ERROR, payload: '' });
@@ -124,11 +128,11 @@ function App() {
                   </Route>
 
                   <Route exact path="/tags">
-                     <div>TagsPage</div>
+                     <TagsPage />
                   </Route>
 
                   <Route exact path="/tags/:tag">
-                     <div>TagPage</div>
+                     <TagPage setPostEditor={setPostEditor} />
                   </Route>
 
                   <Route exact path="/404">
