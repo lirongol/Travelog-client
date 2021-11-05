@@ -32,7 +32,7 @@ function TagPosts({ tag, setPostEditor }) {
 
    return (
       <div className="posts-container">
-         {!posts.length ? 
+         {!posts.length ? info.noMorePosts ? <p>no posts with this tag</p> :
             <CircularProgress style={{ color: 'var(--orange-1)' }} />
             :
             posts.map((post, index) => {
