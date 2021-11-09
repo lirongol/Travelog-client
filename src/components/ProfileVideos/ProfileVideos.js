@@ -26,7 +26,7 @@ function ProfileVideos({ username }) {
                   )
                })
             :
-               <CircularProgress style={{ color: 'var(--orange-1)' }} />
+               videos.msg ? <p>no videos</p> : <CircularProgress style={{ color: 'var(--orange-1)' }} />
          }
       </div>
    )

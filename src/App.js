@@ -23,6 +23,7 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import NotFound from './pages/404/NotFound';
 import TagsPage from './pages/TagsPage/TagsPage';
 import TagPage from './pages/TagPage/TagPage';
+import VideosPage from './pages/VideosPage/VideosPage';
 
 // components
 import Navbar from './components/Navbar/Navbar';
@@ -124,7 +125,7 @@ function App() {
                   </Route>
 
                   <Route exact path="/videos">
-                     <div>VideosPage</div>
+                     <VideosPage />
                   </Route>
 
                   <Route exact path="/tags">

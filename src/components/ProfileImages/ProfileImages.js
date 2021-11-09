@@ -33,7 +33,7 @@ function ProfileImages({ username }) {
                   )
                })
                :
-               <CircularProgress style={{ color: 'var(--orange-1)' }} />
+               images.msg ? <p>no images</p> : <CircularProgress style={{ color: 'var(--orange-1)' }} />
             }
          </div>
       </div>

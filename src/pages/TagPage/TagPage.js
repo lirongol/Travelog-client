@@ -5,6 +5,7 @@ import TagPosts from '../../components/Posts/TagPosts';
 
 function TagPage({ setPostEditor }) {
    const { tag } = useParams();
+   document.title = `Travelog | #${tag}`
 
    return (
       <div className="tag-page">

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 function TagsPage() {
    const dispatch = useDispatch();
+   document.title = 'Travelog | Tags'
 
    useEffect(() => {
       dispatch(getTags());

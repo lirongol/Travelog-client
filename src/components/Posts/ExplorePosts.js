@@ -42,7 +42,7 @@ function ExplorePosts({ setPostEditor }) {
             <CircularProgress style={{ color: 'var(--orange-1)' }} />
             :
             posts.map((post, index) => {
-               if (posts.length - 1 === index) {
+               if (posts.length - 4 === index) {
                   return (
                      <div className="post" key={post._id} ref={loadMore}>
                         <Post post={post} setPostEditor={setPostEditor} />
