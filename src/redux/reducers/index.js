@@ -9,6 +9,7 @@ import explorePosts from './explorePosts';
 import followList from './followList';
 import profileImages from './profileImages';
 import profileVideos from "./profileVideos";
+import videoPosts from './videoPosts';
 import tags from './tags';
 
 const reducers = combineReducers({
@@ -21,6 +22,7 @@ const reducers = combineReducers({
    followList,
    profileImages,
    profileVideos,
+   videoPosts,
    tags,
    error
 });

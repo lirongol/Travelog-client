@@ -31,6 +31,7 @@ export const getProfilePosts = (userId, page, limit) => API.get(`/post/profilepo
 export const refreshProfilePosts = (userId, limit) => API.get(`/post/refreshprofileposts/${userId}?limit=${limit}`);
 export const getExplorePosts = (page, limit) => API.get(`/post/exploreposts?page=${page}&limit=${limit}`);
 export const getTagPosts = (tag, page, limit) => API.get(`/post/tagposts/${tag}?page=${page}&limit=${limit}`);
+export const getVideoPosts = (page, limit) => API.get(`/post/videoposts?page=${page}&limit=${limit}`);
 export const createPost = newPost => API.post('/post', newPost);
 export const updatePost = (id, post) => API.patch(`/post/${id}`, post);
 export const postUpVote = id => API.patch(`/post/${id}/postupVote`);

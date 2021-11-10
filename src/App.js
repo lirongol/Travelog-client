@@ -13,7 +13,8 @@ import {
    PROFILE_IMG_ERROR,
    GET_PROFILE_IMAGES,
    GET_PROFILE_VIDEOS,
-   CLEAR_TAG_POSTS
+   CLEAR_TAG_POSTS,
+   CLEAR_VIDEO_POSTS
 } from './redux/types';
 
 // pages
@@ -51,6 +52,7 @@ function App() {
    useEffect(() => {
       dispatch({ type: CLEAR_TAG_POSTS });
       dispatch({ type: RESET_PROFILE_POSTS });
+      dispatch({ type: CLEAR_VIDEO_POSTS });
       dispatch({ type: LOGIN_ERROR, payload: '' });
       dispatch({ type: REGISTER_ERROR, payload: '' });
       dispatch({ type: GET_PROFILE_ERROR, payload: '' });

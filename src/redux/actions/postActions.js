@@ -11,7 +11,8 @@ import {
    UPDATE_POST_ERROR,
    UPDATE_EXPLORE_POST,
    UPDATE_TAG_POST,
-   DELETE_TAG_POST
+   DELETE_TAG_POST,
+   UPDATE_VIDEO_POST
 } from '../types';
 
 export const createPost = (post, profileId) => async dispatch => {
@@ -30,6 +31,7 @@ export const updatePost = (postId, post) => async dispatch => {
       dispatch({ type: UPDATE_POST, payload: data });
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
       dispatch({ type: UPDATE_TAG_POST, payload: data });
+      dispatch({ type: UPDATE_VIDEO_POST, payload: data });
    } catch (err) {
       dispatch({ type: UPDATE_POST_ERROR, payload: err.response.data.msg });
    }
@@ -53,6 +55,7 @@ export const postUpVote = postId => async dispatch => {
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
       dispatch({ type: UPDATE_EXPLORE_POST, payload: data });
       dispatch({ type: UPDATE_TAG_POST, payload: data });
+      dispatch({ type: UPDATE_VIDEO_POST, payload: data });
    } catch (err) {
       console.log(err);
    }
@@ -65,6 +68,7 @@ export const postDownVote = postId => async dispatch => {
       dispatch({ type: UPDATE_PROFILE_POST, payload: data });
       dispatch({ type: UPDATE_EXPLORE_POST, payload: data });
       dispatch({ type: UPDATE_TAG_POST, payload: data });
+      dispatch({ type: UPDATE_VIDEO_POST, payload: data });
    } catch (err) {
       console.log(err)
    }
