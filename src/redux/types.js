@@ -38,3 +38,4 @@ export const UPDATE_TAG_POST = 'UPDATE_TAG_POST';
 export const GET_VIDEO_POSTS = 'GET_VIDEO_POSTS';
 export const UPDATE_VIDEO_POST = 'UPDATE_VIDEO_POST';
 export const CLEAR_VIDEO_POSTS = 'CLEAR_VIDEO_POSTS';
+export const SEARCH = 'SEARCH';

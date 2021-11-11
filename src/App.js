@@ -36,6 +36,7 @@ function App() {
    const [notificationDropdown, setNotificationDropdown] = useState(() => false);
    const [explorePosts, setExplorePosts] = useState(() => false);
    const [postEditor, setPostEditor] = useState(() => false);
+   const [inputFocus, setInputFocus] = useState(() => false);
    const dispatch = useDispatch();
    const location = useLocation();
    const history = useHistory();
@@ -63,8 +64,9 @@ function App() {
    const error = useSelector(state => state.error);
 
    const handleAppClick = () => {
-      setProfileDropdown(false);
       setNotificationDropdown(false);
+      setProfileDropdown(false);
+      setInputFocus(false);
    }
 
    const dismissCreatePostError = () => dispatch({ type: CREATE_POST_ERROR, payload: '' });
@@ -106,6 +108,8 @@ function App() {
             setNotificationDropdown={setNotificationDropdown}
             setPostEditor={setPostEditor}
             postEditor={postEditor}
+            inputFocus={inputFocus}
+            setInputFocus={setInputFocus}
          />}
          <div className={!user ? null : 'container'}>
             {user && <div className="sidebar">

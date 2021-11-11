@@ -1,3 +1,8 @@
 .videos-page {
    width: 100%;
 }
+
+.page-title {
+   text-align: center;
+   margin-bottom: 15px;
+}

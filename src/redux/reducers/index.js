@@ -11,6 +11,7 @@ import profileImages from './profileImages';
 import profileVideos from "./profileVideos";
 import videoPosts from './videoPosts';
 import tags from './tags';
+import search from './search';
 
 const reducers = combineReducers({
    auth,
@@ -23,6 +24,7 @@ const reducers = combineReducers({
    profileImages,
    profileVideos,
    videoPosts,
+   search,
    tags,
    error
 });

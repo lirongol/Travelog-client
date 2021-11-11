@@ -40,3 +40,6 @@ export const deletePost = id => API.delete(`/post/${id}`);
 
 // app
 export const getTags = () => API.get('/app/tags');
+
+// search
+export const search = (q, limit) => API.get(`/search?q=${q}&limit=${limit}`);

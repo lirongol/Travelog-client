@@ -19,10 +19,11 @@ function Navbar({
    notificationDropdown,
    setNotificationDropdown,
    setPostEditor,
-   postEditor
+   postEditor,
+   setInputFocus,
+   inputFocus
 }) {
    const [mobileSearch, setMobileSearch] = useState(() => false);
-   const [inputFocus, setInputFocus] = useState(() => false);
    const [mobileSidebar, setMobileSidebar] = useState(() => false);
    const user = useSelector(state => state?.auth?.existingUser);
 
