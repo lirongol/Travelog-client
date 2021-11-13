@@ -21,16 +21,21 @@ function Navbar({
    setPostEditor,
    postEditor,
    setInputFocus,
-   inputFocus
+   inputFocus,
+   mobileSearch,
+   setMobileSearch
 }) {
-   const [mobileSearch, setMobileSearch] = useState(() => false);
    const [mobileSidebar, setMobileSidebar] = useState(() => false);
    const user = useSelector(state => state?.auth?.existingUser);
 
    return (
       <div className="navbar">
          {mobileSearch && <div className="mobile-search-bar">
-            <MobileSearch mobileSearch={mobileSearch} setMobileSearch={setMobileSearch} />
+            <MobileSearch
+               mobileSearch={mobileSearch}
+               setMobileSearch={setMobileSearch}
+               setInputFocus={setInputFocus}
+            />
          </div>}
          <div className="nav-container">
 
@@ -50,7 +55,12 @@ function Navbar({
             </div>
 
             <div className="mid-nav">
-               <Search inputFocus={inputFocus} setInputFocus={setInputFocus} />
+               <Search
+                  inputFocus={inputFocus}
+                  setInputFocus={setInputFocus}
+                  setNotificationDropdown={setNotificationDropdown}
+                  setProfileDropdown={setProfileDropdown}
+               />
             </div>
 
             <div className="right-nav">
@@ -61,6 +71,7 @@ function Navbar({
                      e.stopPropagation();
                      setProfileDropdown(pre => !pre);
                      setNotificationDropdown(false);
+                     setInputFocus(false);
                   }}
                >
                   <img src={user?.profileImg?.url} style={profileDropdown ? {border: '1px solid var(--orange-1)'} : null} alt="profile-avatar" />
@@ -73,6 +84,7 @@ function Navbar({
                      e.stopPropagation();
                      setNotificationDropdown(pre => !pre)
                      setProfileDropdown(false);
+                     setInputFocus(false);
                   }}
                >
                   <CgBell style={notificationDropdown ? {color: 'var(--orange-1)'} : null} />
@@ -88,7 +100,7 @@ function Navbar({
                </div>
                {postEditor && <PostEditor setPostEditor={setPostEditor} />}
 
-               <div className="nav-item mobile-search-icon" onClick={() => setMobileSearch(() => true)}>
+               <div className="nav-item mobile-search-icon" onClick={e => { e.stopPropagation(); setMobileSearch(true)}}>
                   <CgSearch />
                </div>
 

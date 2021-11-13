@@ -58,7 +58,7 @@
    z-index: 1001;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 901px) {
    .mobile-search {
       display: none;
    }
@@ -133,6 +133,20 @@
 
 .result-profile-info p {
    font-size: 0.9rem;
+}
+
+.search-result-mobile {
+   background-color: var(--white-1);
+   position: absolute;
+   right: 1%;
+   left: 1%;
+   top: 65px;
+   max-height: 300px;
+   min-height: 50px;
+   box-shadow: 0 0 10px -5px;
+   border-radius: 5px;
+   padding: 5px;
+   overflow-y: auto;
 }
 
 @-webkit-keyframes slide-bottom {

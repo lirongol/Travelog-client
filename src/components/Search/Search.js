@@ -7,14 +7,14 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { SEARCH } from '../../redux/types';
 import { Link } from 'react-router-dom';
 
-function Search({ inputFocus, setInputFocus }) {
+function Search({ inputFocus, setInputFocus, setProfileDropdown, setNotificationDropdown }) {
    const dispatch = useDispatch();
    const [input, setInput] = useState('');
 
    const handleSearch = e => {
       dispatch({ type: SEARCH, payload: { profiles: [], tags: [] } });
       setInput(e.target.value);
-      dispatch(search(e.target.value, 5))
+      dispatch(search(e.target.value, 5));
    }
 
    const results = useSelector(state => state?.search);
@@ -26,7 +26,11 @@ function Search({ inputFocus, setInputFocus }) {
             <input
                type="search"
                placeholder={inputFocus ? null : 'Search'}
-               onFocus={() => setInputFocus(true)}
+               onFocus={() => {
+                  setInputFocus(true);
+                  setProfileDropdown(false);
+                  setNotificationDropdown(false);
+               }}
                onChange={handleSearch}
                value={input}
             />

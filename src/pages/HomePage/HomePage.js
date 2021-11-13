@@ -5,7 +5,7 @@ import FeedPosts from '../../components/Posts/FeedPosts';
 import ExplorePosts from '../../components/Posts/ExplorePosts';
 
 function HomePage({ setPostEditor, explorePosts, setExplorePosts }) {
-   document.title = 'Travelog';
+   document.title =`Travelog | ${explorePosts ? 'Explore' : 'Feed'}`;
 
    return (
       <div className="home-page">

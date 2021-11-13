@@ -37,6 +37,7 @@ function App() {
    const [explorePosts, setExplorePosts] = useState(() => false);
    const [postEditor, setPostEditor] = useState(() => false);
    const [inputFocus, setInputFocus] = useState(() => false);
+   const [mobileSearch, setMobileSearch] = useState(() => false);
    const dispatch = useDispatch();
    const location = useLocation();
    const history = useHistory();
@@ -67,6 +68,7 @@ function App() {
       setNotificationDropdown(false);
       setProfileDropdown(false);
       setInputFocus(false);
+      setMobileSearch(false);
    }
 
    const dismissCreatePostError = () => dispatch({ type: CREATE_POST_ERROR, payload: '' });
@@ -110,6 +112,8 @@ function App() {
             postEditor={postEditor}
             inputFocus={inputFocus}
             setInputFocus={setInputFocus}
+            mobileSearch={mobileSearch}
+            setMobileSearch={setMobileSearch}
          />}
          <div className={!user ? null : 'container'}>
             {user && <div className="sidebar">
