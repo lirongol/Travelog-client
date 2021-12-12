@@ -91,9 +91,9 @@ function Navbar({
                </div>
                {notificationDropdown && <NotificationDropdown />}
 
-               <div className="nav-item">
+               <Link to="/messages" className="nav-item">
                   <TiMessages />
-               </div>
+               </Link>
 
                <div className="nav-item" onClick={() => setPostEditor(true)}>
                   <AiOutlinePlus />

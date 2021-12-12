@@ -12,6 +12,7 @@ import profileVideos from "./profileVideos";
 import videoPosts from './videoPosts';
 import tags from './tags';
 import search from './search';
+import chats from './chat';
 
 const reducers = combineReducers({
    auth,
@@ -26,6 +27,7 @@ const reducers = combineReducers({
    videoPosts,
    search,
    tags,
+   chats,
    error
 });
 

@@ -97,6 +97,8 @@
    font-size: 20px;
    width: 20px;
    height: 20px;
+   text-decoration: none;
+   color: inherit;
 }
 
 .nav-item:hover {

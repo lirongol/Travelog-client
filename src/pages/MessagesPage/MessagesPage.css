@@ -1,0 +1,10 @@
+.messages-page {
+   display: flex;
+   justify-content: center;
+   width: 100%;
+   background-color: var(--white-1);
+   box-shadow: 0 0 6px -4px black;
+   border-radius: 5px;
+   height: calc(100vh - 80px);
+   min-height: 400px;
+}

@@ -39,3 +39,5 @@ export const GET_VIDEO_POSTS = 'GET_VIDEO_POSTS';
 export const UPDATE_VIDEO_POST = 'UPDATE_VIDEO_POST';
 export const CLEAR_VIDEO_POSTS = 'CLEAR_VIDEO_POSTS';
 export const SEARCH = 'SEARCH';
+export const GET_CHATS = 'GET_CHATS';
+export const UPDATE_CHAT = 'UPDATE_CHAT';

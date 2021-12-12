@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './app.css';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { getChats } from './redux/actions/chat';
 import {
    UPDATE_PROFILE,
    RESET_PROFILE_POSTS,
@@ -25,11 +26,15 @@ import NotFound from './pages/404/NotFound';
 import TagsPage from './pages/TagsPage/TagsPage';
 import TagPage from './pages/TagPage/TagPage';
 import VideosPage from './pages/VideosPage/VideosPage';
+import MessagesPage from './pages/MessagesPage/MessagesPage';
 
 // components
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
 import PopUp from './components/Error/PopUp';
+
+import io from 'socket.io-client';
+const socket = io('http://192.168.1.200:5000');
 
 function App() {
    const [profileDropdown, setProfileDropdown] = useState(() => false);
@@ -38,9 +43,22 @@ function App() {
    const [postEditor, setPostEditor] = useState(() => false);
    const [inputFocus, setInputFocus] = useState(() => false);
    const [mobileSearch, setMobileSearch] = useState(() => false);
+   const [activeChat, setActiveChat] = useState('');
    const dispatch = useDispatch();
    const location = useLocation();
    const history = useHistory();
+
+   const user = useSelector(state => state?.auth);
+   const error = useSelector(state => state.error);
+
+   useEffect(() => {
+      socket.emit('user-online', JSON.parse(localStorage.getItem('profile'))?.existingUser._id);
+   }, [user])
+
+   useEffect(() => {
+      dispatch(getChats());
+      // eslint-disable-next-line
+   }, [])
 
    useEffect(() => {
       dispatch({ type: 'AUTH', payload: JSON.parse(localStorage.getItem('profile')) });
@@ -60,9 +78,6 @@ function App() {
       dispatch({ type: GET_PROFILE_ERROR, payload: '' });
       // window.scrollTo(0, 0);
    }, [dispatch, location])
-
-   const user = useSelector(state => state?.auth?.token);
-   const error = useSelector(state => state.error);
 
    const handleAppClick = () => {
       setNotificationDropdown(false);
@@ -140,6 +155,10 @@ function App() {
 
                   <Route exact path="/tags">
                      <TagsPage />
+                  </Route>
+
+                  <Route path="/messages">
+                     <MessagesPage socket={socket} activeChat={activeChat} setActiveChat={setActiveChat} />
                   </Route>
 
                   <Route exact path="/tags/:tag">

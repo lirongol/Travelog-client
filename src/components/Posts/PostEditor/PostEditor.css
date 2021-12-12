@@ -9,7 +9,7 @@
    max-width: 500px;
    max-height: 600px;
    min-height: 350px;
-   overflow-y: scroll;
+   overflow-y: auto;
    width: 95%;
    height: auto;
    background-color: var(--white-1);
