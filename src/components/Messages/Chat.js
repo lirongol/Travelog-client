@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import './Messages.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendMsg } from '../../redux/actions/chat';
+import { sendMsg, receiveMsg } from '../../redux/actions/chat';
 import { AiOutlineCheck } from 'react-icons/ai';
 import moment from 'moment';
 
@@ -42,27 +42,20 @@ function Chat({ activeChat, chats, socket }) {
             ]
          })
          dispatch(sendMsg(contact.id, message));
-         socket.emit('send-message', contact.id, auth._id, message);
+         socket.emit('send-message', contact.id, auth._id, message, chat._id);
          setMessage('');
       }
    }
 
-   socket.on('receive-message', (message, senderId) => {
-      if (chat) {
-         setChat({
-            ...chat,
-            messages: [
-               ...chat.messages,
-               {
-                  confirmed: true,
-                  text: message,
-                  userId: senderId,
-                  _id: Math.random(),
-                  date: new Date()
-               }
-            ]
-         })
+   socket.off('receive-message').on('receive-message', (message, senderId, chatId) => {
+      const newMessage = {
+         confirmed: true,
+         text: message,
+         userId: senderId,
+         _id: Math.random(),
+         date: new Date()
       }
+      dispatch(receiveMsg({ newMessage, chatId }));
    })
 
    return (

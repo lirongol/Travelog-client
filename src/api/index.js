@@ -47,3 +47,4 @@ export const search = (q, limit) => API.get(`/search?q=${q}&limit=${limit}`);
 // chat
 export const getChats = () => API.get('/chat');
 export const sendMsg = (userId, message) => API.post(`/chat/sendmessage/t/${userId}`, { message });
+export const newChat = receiverId => API.post(`/chat/new/t/${receiverId}`)

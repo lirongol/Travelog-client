@@ -3,6 +3,7 @@ import './ProfilePage.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getProfile, followProfile, updateBio, updateProfileImg } from '../../redux/actions/profile';
+import { newChat } from '../../redux/actions/chat';
 import { AiOutlineCheck, AiOutlineVideoCamera } from 'react-icons/ai';
 import { BsFilePost } from 'react-icons/bs';
 import { IoMdImages } from 'react-icons/io';
@@ -10,13 +11,13 @@ import { FaPassport } from 'react-icons/fa';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ProfilePosts from '../../components/Posts/ProfilePosts';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import FileBase64 from 'react-file-base64';
 import FollowList from '../../components/FollowList/FollowList';
 import ProfileImages from '../../components/ProfileImages/ProfileImages';
 import ProfileVideos from '../../components/ProfileVideos/ProfileVideos';
 
-function ProfilePage({ setPostEditor }) {
+function ProfilePage({ setPostEditor, setActiveChat }) {
    const dispatch = useDispatch();
    const { username } = useParams();
    document.title = `Travelog | ${username}`;
@@ -26,6 +27,7 @@ function ProfilePage({ setPostEditor }) {
    const [bioError, setBioError] = useState('');
    const [isMouseOver, setIsMouseOver] = useState(false);
    const [followList, setFollowList] = useState('');
+   const history = useHistory();
 
    const user = useSelector(state => state?.auth?.existingUser);
    const profile = useSelector(state => state?.profile);
@@ -70,6 +72,11 @@ function ProfilePage({ setPostEditor }) {
       dispatch(updateProfileImg(base64));
    }
 
+   const handleNewChat = () => {
+      dispatch(newChat(profile._id));
+      history.push('/messages');
+   }
+
    return (
       getProfileError ? <Redirect to="/404" /> :
       <div className="profile-page">
@@ -96,7 +103,12 @@ function ProfilePage({ setPostEditor }) {
                   </div>
 
                   <div className="profile-name">
-                     <h1>{profile.firstName} {profile.lastName}</h1>
+                        <h1>
+                           {profile.fullName}
+                           {!isMyProfile && <span>
+                              <button className="btn btn-msg" onClick={handleNewChat}>Message</button>
+                           </span>}
+                        </h1>
                      <h3>@{profile.username}</h3>
                   </div>
 

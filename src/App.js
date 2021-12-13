@@ -170,7 +170,7 @@ function App() {
                   </Route>
 
                   <Route exact path="/:username">
-                     <ProfilePage setPostEditor={setPostEditor} />
+                     <ProfilePage setPostEditor={setPostEditor} setActiveChat={setActiveChat} />
                   </Route>
 
                   <Route path="/">

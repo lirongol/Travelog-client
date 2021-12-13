@@ -41,3 +41,5 @@ export const CLEAR_VIDEO_POSTS = 'CLEAR_VIDEO_POSTS';
 export const SEARCH = 'SEARCH';
 export const GET_CHATS = 'GET_CHATS';
 export const UPDATE_CHAT = 'UPDATE_CHAT';
+export const RECEIVE_MSG = 'RECEIVE_MSG';
+export const NEW_CHAT = 'NEW_CHAT';

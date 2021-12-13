@@ -61,6 +61,11 @@
    color: var(--gray-1);
 }
 
+.profile-name h1 {
+   display: flex;
+   align-items: center;
+}
+
 .follow-stats {
    display: flex;
    margin-top: 10px;
@@ -235,4 +240,12 @@
 .followers-count,
 .following-count:hover {
    cursor: pointer;
+}
+
+.btn-msg {
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-left: 5px;
 }
