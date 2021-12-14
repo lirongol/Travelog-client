@@ -34,7 +34,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import PopUp from './components/Error/PopUp';
 
 import io from 'socket.io-client';
-const socket = io('http://192.168.1.200:5000');
+const socket = io('https://travelogapi.herokuapp.com');
 
 function App() {
    const [profileDropdown, setProfileDropdown] = useState(() => false);
