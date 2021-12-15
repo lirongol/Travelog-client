@@ -74,7 +74,7 @@ function ProfilePage({ setPostEditor, setActiveChat }) {
 
    const handleNewChat = () => {
       dispatch(newChat(profile._id));
-      history.push('/messages');
+      history.push(`/messages/${profile._id}`);
    }
 
    return (

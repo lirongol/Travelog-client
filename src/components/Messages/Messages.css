@@ -106,6 +106,7 @@
 
 .active-chat-info img {
    width: 45px;
+   height: 45px;
    border-radius: 50%;
    user-select: none;
 }

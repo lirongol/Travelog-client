@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Messages.css';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function Contacts({ setActiveChat, activeChat, chats }) {
    const auth = useSelector(state => state.auth?.existingUser);
+   const history = useHistory();
 
    const contacts = [];
    for (let chat of chats) {
@@ -14,6 +17,15 @@ function Contacts({ setActiveChat, activeChat, chats }) {
       }
    }
 
+   const { userId } = useParams();
+   useEffect(() => {
+      if (userId) {
+         const contact = contacts.find(contact => contact.id === userId);
+         setActiveChat(contact?.chatId);
+      }
+      // eslint-disable-next-line
+   }, [contacts, userId])
+
    return (
       <div className="contacts">
 
@@ -22,12 +34,15 @@ function Contacts({ setActiveChat, activeChat, chats }) {
                <div
                   key={contact.id}
                   className={`contact ${activeChat === contact.chatId && 'active-contact'}`}
-                  onClick={() => setActiveChat(contact.chatId)}
+                  onClick={() => {
+                     setActiveChat(contact.chatId);
+                     history.push(`/messages/${contact.id}`)
+                  }}
                >
                   <img src={contact.profileImg.url} alt="contact" />
                   <div className="contact-info">
                      <h4>{contact.fullName}</h4>
-                     <p>{contact.username}</p>
+                     <p>@{contact.username}</p>
                   </div>
                </div>
             )

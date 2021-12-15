@@ -34,7 +34,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import PopUp from './components/Error/PopUp';
 
 import io from 'socket.io-client';
-const socket = io('https://travelogapi.herokuapp.com');
+const socket = io('https://travelogapi.herokuapp.com/');
 
 function App() {
    const [profileDropdown, setProfileDropdown] = useState(() => false);
@@ -157,7 +157,11 @@ function App() {
                      <TagsPage />
                   </Route>
 
-                  <Route path="/messages">
+                  <Route exact path="/messages">
+                     <MessagesPage socket={socket} activeChat={activeChat} setActiveChat={setActiveChat} />
+                  </Route>
+
+                  <Route exact path="/messages/:userId">
                      <MessagesPage socket={socket} activeChat={activeChat} setActiveChat={setActiveChat} />
                   </Route>
 
