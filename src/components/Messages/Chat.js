@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { sendMsg, receiveMsg } from '../../redux/actions/chat';
 import { AiOutlineCheck } from 'react-icons/ai';
+import { BiSend } from 'react-icons/bi';
 import moment from 'moment';
 
 function Chat({ activeChat, chats, socket }) {
@@ -11,6 +12,7 @@ function Chat({ activeChat, chats, socket }) {
    const [chat, setChat] = useState(null);
    const [contact, setContact] = useState(null);
    const [message, setMessage] = useState('');
+   const [inputFocus, setInputFocus] = useState(false);
 
    const auth = useSelector(state => state.auth?.existingUser);
    const chatBody = useRef();
@@ -113,11 +115,21 @@ function Chat({ activeChat, chats, socket }) {
 
          {chat && <div className="chat-footer">
             <form onSubmit={handleSendMsg}>
-               <input
-                  type="text"
-                  value={message}
-                  onChange={e => setMessage(e.target.value)}
-               />
+               <div className={`input-container ${inputFocus ? 'chat-input-focus' : 'chat-input-blur'}`}>
+                  <input
+                     type="text"
+                     value={message}
+                     placeholder="Text"
+                     onChange={e => setMessage(e.target.value)}
+                     onFocus={() => setInputFocus(true)}
+                     onBlur={() => setInputFocus(false)}
+                  />
+               </div>
+               <button className="btn btn-send-msg" type="submit">
+                  <div>
+                     <BiSend style={{display: 'flex'}} />
+                  </div>
+               </button>
             </form>
          </div>}
          

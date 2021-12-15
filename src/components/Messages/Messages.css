@@ -156,6 +156,14 @@
 .chat-footer {
    border-top: 1px solid var(--white-3);
    height: 60px;
+   padding: 0 5px;
+}
+
+.chat-footer form {
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .default-chat {
@@ -164,4 +172,43 @@
    align-items: center;
    height: 100%;
    font-size: 1.5rem;
+}
+
+.chat-footer input {
+   width: 100%;
+   font-size: 1rem;
+   outline: none;
+   border: none;
+   background-color: inherit;
+}
+
+.input-container {
+   padding: 8px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100%;
+   border-radius: 20px;
+}
+
+.chat-input-focus {
+   background-color: white;
+   box-shadow: 0 0 10px -5px;
+   transition: 300ms;
+}
+
+.chat-input-blur {
+   background-color: var(--white-2);
+   box-shadow: none;
+   transition: 300ms;
+}
+
+.btn-send-msg {
+   margin-left: 5px;
+   width: 40px !important;
+   height: 40px;
+   border-radius: 50% !important;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
