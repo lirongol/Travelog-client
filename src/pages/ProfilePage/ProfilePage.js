@@ -103,12 +103,13 @@ function ProfilePage({ setPostEditor, setActiveChat }) {
                   </div>
 
                   <div className="profile-name">
-                        <h1>
-                           {profile.fullName}
-                           {!isMyProfile && <span>
-                              <button className="btn btn-msg" onClick={handleNewChat}>Message</button>
-                           </span>}
-                        </h1>
+                     <h1>
+                        {!isMyProfile && <span className='user-status' style={{ backgroundColor: profile.status ? 'green' : 'red'}}></span>}
+                        {profile.fullName}
+                        {!isMyProfile && <span>
+                           <button className="btn btn-msg" onClick={handleNewChat}>Message</button>
+                        </span>}
+                     </h1>
                      <h3>@{profile.username}</h3>
                   </div>
 

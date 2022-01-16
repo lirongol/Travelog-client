@@ -3,6 +3,7 @@ import './app.css';
 import { Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getChats } from './redux/actions/chat';
+import { production } from './config';
 import {
    UPDATE_PROFILE,
    RESET_PROFILE_POSTS,
@@ -34,7 +35,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import PopUp from './components/Error/PopUp';
 
 import io from 'socket.io-client';
-const socket = io('https://travelogapi.herokuapp.com/');
+const socket = io(production ? 'https://travelogapi.herokuapp.com' : 'http://localhost:5000');
 
 function App() {
    const [profileDropdown, setProfileDropdown] = useState(() => false);

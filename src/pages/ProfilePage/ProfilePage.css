@@ -249,3 +249,11 @@
    justify-content: center;
    margin-left: 5px;
 }
+
+.user-status {
+   width: 10px;
+   height: 10px;
+   margin-right: 5px;
+   border-radius: 50%;
+   box-shadow: 0 0 3px 0px black;
+}

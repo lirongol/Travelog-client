@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { production } from '../config';
 
-const API = axios.create({ baseURL: 'https://travelogapi.herokuapp.com/' });
+const API = axios.create({ baseURL: production ? 'https://travelogapi.herokuapp.com' : 'http://localhost:5000' });
 
 API.interceptors.request.use(req => {
    if (localStorage.getItem('profile')) {
