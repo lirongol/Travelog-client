@@ -130,6 +130,7 @@ function App() {
             setInputFocus={setInputFocus}
             mobileSearch={mobileSearch}
             setMobileSearch={setMobileSearch}
+            socket={socket}
          />}
          <div className={!user ? null : 'container'}>
             {user && <div className="sidebar">

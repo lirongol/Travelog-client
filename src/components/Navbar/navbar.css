@@ -115,3 +115,22 @@
       display: none;
    }
 }
+
+.notification-count {
+   background-color: red;
+   width: 18px;
+   height: 18px;
+   border-radius: 50%;
+   position: absolute;
+   top: -4px;
+   right: -4px;
+   font-size: 0.7rem;
+   color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.relative {
+   position: relative;
+}

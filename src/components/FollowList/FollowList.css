@@ -22,7 +22,7 @@
 
 .follow-list-body {
    height: 249px;
-   overflow-y: scroll;
+   overflow-y: auto;
 }
 
 .user-preview {

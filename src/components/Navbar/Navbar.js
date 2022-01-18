@@ -23,7 +23,8 @@ function Navbar({
    setInputFocus,
    inputFocus,
    mobileSearch,
-   setMobileSearch
+   setMobileSearch,
+   socket
 }) {
    const [mobileSidebar, setMobileSidebar] = useState(() => false);
    const user = useSelector(state => state?.auth?.existingUser);
@@ -91,8 +92,9 @@ function Navbar({
                </div>
                {notificationDropdown && <NotificationDropdown />}
 
-               <Link to="/messages" className="nav-item">
+               <Link to="/messages" className="nav-item relative">
                   <TiMessages />
+                  {user.messages > 0 && <div className='notification-count'>{user.messages}</div>}
                </Link>
 
                <div className="nav-item" onClick={() => setPostEditor(true)}>
