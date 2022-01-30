@@ -77,7 +77,7 @@ function Navbar({
                >
                   <img src={user?.profileImg?.url} style={profileDropdown ? {border: '1px solid var(--orange-1)'} : null} alt="profile-avatar" />
                </div>
-               {profileDropdown && <ProfileDropdown setProfileDropdown={setProfileDropdown} />}
+               {profileDropdown && <ProfileDropdown setProfileDropdown={setProfileDropdown} socket={socket} />}
 
                <div
                   className="nav-item"

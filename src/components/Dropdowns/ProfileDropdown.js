@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { logout } from '../../redux/actions/auth';
 
-function ProfileDropdown({ setProfileDropdown }) {
+function ProfileDropdown({ setProfileDropdown, socket }) {
    const dispatch = useDispatch();
    const history = useHistory();
    const user = useSelector(state => state?.auth?.existingUser);
@@ -15,6 +15,7 @@ function ProfileDropdown({ setProfileDropdown }) {
    const handleLogout = () => {
       setProfileDropdown(false);
       dispatch(logout(history));
+      socket.emit('user-offline');
    }
 
    return (
